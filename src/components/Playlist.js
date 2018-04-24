@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import { AddSong } from '../actions/actions.js'
-import { GetSongs } from '../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -49,7 +48,7 @@ class Playlist extends Component {
 
   const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-      AddSong, GetSongs
+      AddSong
     }, dispatch)
   }
 
