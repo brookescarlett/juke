@@ -7,7 +7,6 @@ import {bindActionCreators} from 'redux'
 import * as firebase from 'firebase'
 import SpotifyWebApi from 'spotify-web-api-js'
 
-const clientID = "e3eedba3c2584d3db92f1c396df003bf"
 const spotifyApi = new SpotifyWebApi()
 
 class Auth extends Component {
