@@ -38,17 +38,6 @@ export default class Filter extends Component {
     })
   }
 
-  fetchFunction = (song) => {
-    let newSongRef = firebase.database().ref('songs/').push()
-
-    newSongRef.set({
-      song: song,
-      claps: 0,
-      user: 'brooke',
-      data: 'other spotify datums'
-    })
-  }
-
   renderSearchResults = () => {
     return this.state.searchResults.map (song => <DisplayFilterResults key={song.id} datum={song}/>)
   }

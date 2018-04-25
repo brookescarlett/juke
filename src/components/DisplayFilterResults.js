@@ -14,24 +14,21 @@ export default class DisplayFilterResults extends Component {
   }
 
   handleClick = (e) => {
-    console.log(this.props.datum)
     let song = this.props.datum
-    // this.setState({
-    //   songData: this.props.datum
-    // }, () => console.log(this.state.songData))
-
-    // console.log(this.state.songData)
     this.fetchFunction(song)
   }
 
   fetchFunction = (song) => {
     let newSongRef = firebase.database().ref('songs/').push()
+    console.log(newSongRef.key)
 
     newSongRef.set({
+      id: newSongRef.key,
       song: song.name,
       artist: song.artists[0].name,
       album: song.album.name,
-      claps: 0,
+      upVote: 0,
+      downVote: 0,
       user: 'brooke',
       datum: song
     })

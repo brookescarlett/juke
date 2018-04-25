@@ -7,6 +7,27 @@ export let AddSong = obj => {
   }
 }
 
+export let RemoveSong = obj => {
+  return {
+    type: "REMOVE_SONG",
+    payload: obj
+  }
+}
+
+export let UpvoteClaps = obj => {
+  return {
+    type: "UPVOTE_CLAPS",
+    payload: obj
+  }
+}
+
+export let UpdateSong = obj => {
+  return {
+    type: "UPDATE_SONG",
+    payload: obj
+  }
+}
+
 export let AddToken = obj => {
   return {
     type: "ADD_TOKEN",
