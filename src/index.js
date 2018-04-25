@@ -6,8 +6,7 @@ import Rebase from 're-base'
 import registerServiceWorker from './registerServiceWorker'
 
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase'
+import { createStore, applyMiddleware } from 'redux'
 
 //possibly not needed
 // import rootReducer from './reducers/rootReducer.js'

@@ -16,10 +16,6 @@ let id = 0
 
 class Playlist extends Component {
 
-  constructor(props){
-    super(props)
-  }
-
   componentDidMount = () => {
     firebase.database().ref().child('songs').orderByKey().on('child_added', snap => {
       this.props.AddSong(snap.val())

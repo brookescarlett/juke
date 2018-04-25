@@ -2,9 +2,6 @@ import './App.css'
 
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import registerServiceWorker from './registerServiceWorker'
-
-import {connect} from 'react-redux'
 
 import SignUp from './containers/SignUp'
 import Auth from './containers/Auth'

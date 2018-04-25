@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import * as firebase from 'firebase'
-
-import {connect} from 'react-redux'
-
 import DisplayFilterResults from './DisplayFilterResults'
 
 export default class Filter extends Component {

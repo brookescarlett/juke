@@ -1,15 +1,9 @@
 import React, {Component} from 'react'
-
-import * as actions from '../actions/actions.js'
-import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
-
-import * as firebase from 'firebase'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 const spotifyApi = new SpotifyWebApi()
 
-class Auth extends Component {
+export default class Auth extends Component {
 
   constructor(props){
     super(props)
@@ -18,7 +12,6 @@ class Auth extends Component {
     const token = params.access_token
 
     if (token) {
-      this.props.actions.AddToken(params)
       spotifyApi.setAccessToken(token)
     }
   }
@@ -53,13 +46,3 @@ class Auth extends Component {
 
 
 }
-
-const mapStateToProps = state => {
-  return {tokens: state.tokens}
-}
-
-const mapDispatchToProps = dispatch => {
-  return {actions: bindActionCreators(actions, dispatch)}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Auth)

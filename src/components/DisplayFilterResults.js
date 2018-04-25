@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import * as firebase from 'firebase'
 import {connect} from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 class DisplayFilterResults extends Component {
 
@@ -20,7 +19,6 @@ class DisplayFilterResults extends Component {
 
   fetchFunction = (song) => {
     let newSongRef = firebase.database().ref('songs/').push()
-    console.log(newSongRef.key)
 
     newSongRef.set({
       id: newSongRef.key,
@@ -35,7 +33,6 @@ class DisplayFilterResults extends Component {
   }
 
   render(){
-    console.log(this.props.datum)
     return(
       <div>
         <div onClick={this.handleClick} id={this.props.datum}>
