@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import Filter from '../components/Filter'
 import Playlist from '../components/Playlist'
-import UserList from '../components/UserList'
-
 
 export default class App extends Component {
 
@@ -12,7 +10,6 @@ export default class App extends Component {
       <div>
         <Filter store={this.props.store}/>
         <Playlist store={this.props.store} />
-        <UserList store={this.props.store} />
       </div>
     )
   }

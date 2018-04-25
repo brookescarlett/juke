@@ -17,25 +17,29 @@ export default class Filter extends Component {
 
   handleChange = (e) => {
     let query = e.target.value.replace(" ", "+")
-    console.log(query)
-    console.log(localStorage.getItem('access_token'))
 
-    fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-      }
-    })
-    .then(res => res.json())
-    .then(json => {
+    if (query !== "") {
+      fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      })
+      .then(res => res.json())
+      .then(json => {
 
-      json.tracks !== undefined ?
-      (this.setState({
-        searchResults: json.tracks.items
-      })) : null
+        json.tracks !== undefined ?
+        (this.setState({
+          searchResults: json.tracks.items
+        })) : null
 
-    })
+      })
+    } else {
+      this.setState({
+        searchResults: []
+      })
+    }
   }
 
   renderSearchResults = () => {

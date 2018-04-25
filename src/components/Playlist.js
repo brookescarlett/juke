@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Rebase from 're-base'
 
 import { AddSong } from '../actions/actions.js'
 import { UpdateSong } from '../actions/actions.js'
@@ -11,6 +10,7 @@ import {bindActionCreators} from 'redux'
 import * as firebase from 'firebase'
 
 import SongItem from '../components/SongItem'
+import User from './User'
 
 let id = 0
 
@@ -41,12 +41,30 @@ class Playlist extends Component {
     }) : null
   }
 
+  onlyUnique = (value, index, self) => {
+    return self.indexOf(value) === index
+  }
+
+  renderUsers = () => {
+    let userArray = []
+
+    this.props.songs !== [] ? this.props.songs.map(song => {
+      userArray.push(song.user)
+    }) : null
+
+    let uniques = userArray.filter(this.onlyUnique)
+
+    return uniques.map(user => <User key={user} datum={user}/>)
+  }
+
 
   render(){
     return(
       <div>
         PLAYLIST
           {this.renderStore()}
+        USERLIST
+          {this.renderUsers()}
       </div>
     )
   }
