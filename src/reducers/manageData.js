@@ -1,7 +1,8 @@
 export default function manageData(state = {
   songs: [],
   tokens: [],
-  loading: false
+  loading: false,
+  currentUser: []
 }, action){
 
   switch(action.type) {
@@ -35,6 +36,13 @@ export default function manageData(state = {
       return{
         ...state,
         loading: true
+      }
+
+    case 'ADD_USER':
+      return{
+        ...state,
+        loading: false,
+        currentUser: action.payload
       }
 
     case 'ADD_TOKEN':

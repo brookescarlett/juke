@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import * as firebase from 'firebase'
+import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-
-
-export default class DisplayFilterResults extends Component {
+class DisplayFilterResults extends Component {
 
   constructor() {
     super()
@@ -29,7 +29,7 @@ export default class DisplayFilterResults extends Component {
       album: song.album.name,
       upVote: 0,
       downVote: 0,
-      user: 'brooke',
+      user: this.props.currentUser.display_name,
       datum: song
     })
   }
@@ -48,3 +48,9 @@ export default class DisplayFilterResults extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {currentUser: state.currentUser}
+}
+
+export default connect(mapStateToProps)(DisplayFilterResults)

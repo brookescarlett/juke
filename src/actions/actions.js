@@ -14,13 +14,6 @@ export let RemoveSong = obj => {
   }
 }
 
-export let UpvoteClaps = obj => {
-  return {
-    type: "UPVOTE_CLAPS",
-    payload: obj
-  }
-}
-
 export let UpdateSong = obj => {
   return {
     type: "UPDATE_SONG",
@@ -35,6 +28,24 @@ export let AddToken = obj => {
   }
 }
 
+
+export function fetchUser() {
+  return (dispatch) => {
+    dispatch({type: 'START_GETTING_USER'})
+    return fetch('https://api.spotify.com/v1/me', {
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      }
+    })
+    .then( res => res.json())
+    .then( json => {
+      dispatch({type: 'ADD_USER', payload: json})
+    })
+  }
+
+}
 
 // function getHashParams(){
 //   var hashParams = {};

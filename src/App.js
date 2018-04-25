@@ -9,12 +9,14 @@ import {connect} from 'react-redux'
 import SignUp from './containers/SignUp'
 import Auth from './containers/Auth'
 import Main from './containers/Main'
+import NavBar from './components/NavBar'
 
 export default class App extends Component {
 
   render() {
     return (
       <div className="App">
+        <NavBar />
         <Router>
           <div>
             <Switch>
