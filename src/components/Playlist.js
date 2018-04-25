@@ -17,9 +17,17 @@ class Playlist extends Component {
   }
 
   componentDidMount = () => {
-   firebase.database().ref().child('songs').orderByKey().on('child_added', snap => {
+    firebase.database().ref().child('songs').orderByKey().on('child_added', snap => {
       this.props.AddSong(snap.val())
     })
+
+    // firebase.database().ref().child('songs').orderByKey().on('child_changed', snap => {
+    //   this.props.AddSong(snap.val())
+    //  })
+    //
+    // firebase.database().ref().child('songs').orderByKey().on('child_removed', snap => {
+    //   this.props.AddSong(snap.val())
+    // })
   }
 
   renderStore = () => {

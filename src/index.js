@@ -4,11 +4,15 @@ import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
-import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase'
+
+//possibly not needed
 // import rootReducer from './reducers/rootReducer.js'
 import manageData from './reducers/manageData.js'
+import thunk from 'redux-thunk'
+//end of possibly not needed
 
 import * as firebase from 'firebase'
 
