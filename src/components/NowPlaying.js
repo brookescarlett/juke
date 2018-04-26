@@ -5,11 +5,11 @@ import * as firebase from 'firebase'
 
 class Player extends Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
   }
 
-  componentDidMount = () => {
+  componentDidUpdate = () => {
     if (this.props.songs.length !== 0) {
       fetch('https://api.spotify.com/v1/me/player', {
         headers: {
@@ -20,24 +20,38 @@ class Player extends Component {
       })
       .then(res => res.json())
       .then(json => {
-
         const chatroom = this.props.chatroom
-        const state = this.state
+        let wasPlaying = ""
+        let isPlaying = ""
+        var updates = {}
 
         var ref = firebase.database().ref().child(`${this.props.chatroom}`)
-        ref.orderByKey().limitToFirst(2).on("child_added", function(snapshot) {
-
-          if (snapshot.val().song === json.item.name) {
-            let foundCurrent = snapshot.val()
+        ref.orderByKey().limitToFirst(1).on("child_added", function(snapshot) {
+          if (snapshot.val().currentlyPlaying === true) {
+            wasPlaying = snapshot.val()
             debugger
-            var updates = {}
-            updates[`/${chatroom}/` + foundCurrent.id + '/currentlyPlaying'] = true
-            var updateVotes = firebase.database().ref().update(updates)
-
-            let check = state.currentlyPlaying.filter( song => song.id === foundCurrent.id)
-            check === [] ? this.setState({currentlyPlaying: this.state.currentlyPlaying, foundCurrent}) : null
           }
         })
+
+        var ref = firebase.database().ref().child(`${this.props.chatroom}`)
+        ref.orderByKey().on("child_added", function(snapshot) {
+          if (snapshot.val().song === json.item.name) {
+            isPlaying = snapshot.val()
+            updates[`/${chatroom}/` + isPlaying.id + '/currentlyPlaying'] = true
+            var updateVotes = firebase.database().ref().update(updates)
+            debugger
+          }
+        })
+
+        if (wasPlaying !== "" && isPlaying !== "") {
+          if (wasPlaying.id !== isPlaying.id) {
+            updates[`/${chatroom}/` + wasPlaying.id + '/beenPlayed'] = true
+            updates[`/${chatroom}/` + wasPlaying.id + '/currentlyPlaying'] = false
+            var updateVotes = firebase.database().ref().update(updates)
+            debugger
+          }
+        }
+
       })
     }
   }

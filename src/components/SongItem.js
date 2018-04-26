@@ -49,6 +49,7 @@ class SongItem extends Component {
         <p onClick={this.handleUpVote}>upvote: {this.props.datum.upVote}</p>
         <p onClick={this.handleDownVote}>downVote: {this.props.datum.downVote}</p>
         <p>currentlyPlaying: {this.props.datum.currentlyPlaying ? "true" : "false"}</p>
+        <p>hasPlayed: {this.props.datum.beenPlayed ? "true" : "false"}</p>
         <p>added by: {this.props.datum.user}</p>
         {/* <p>data: {this.props.datum.data}</p> */}
         <p>-----</p>

@@ -71,7 +71,6 @@ class Playlist extends Component {
 
   renderStore = () => {
     return this.props.songs !== [] ? this.props.songs.map(song => {
-      id++
       return <SongItem key={song.id} datum={song}/>
     }) : null
   }
