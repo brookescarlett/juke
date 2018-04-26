@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { AddSong } from '../actions/actions.js'
 import { UpdateSong } from '../actions/actions.js'
 import { RemoveSong } from '../actions/actions.js'
-import { SetPlaylistId } from '../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -13,7 +12,6 @@ import * as firebase from 'firebase'
 import SongItem from '../components/SongItem'
 import User from './User'
 
-let id = 0
 
 class Playlist extends Component {
 
@@ -36,21 +34,6 @@ class Playlist extends Component {
       this.removeSongFromPlaylist(snap.val())
     })
 
-  }
-
-  createPlaylist = () => {
-    console.log('here')
-    fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-      },
-      body: JSON.stringify({name: `${this.props.chatroom}`, public: true})
-    })
-    .then ( res => res.json())
-    .then ( json => this.props.SetPlaylistId(json.id))
   }
 
   addSongToPlaylist = (song) => {
@@ -114,7 +97,7 @@ class Playlist extends Component {
     console.log(this.props);
     return(
       <div>
-        <button onClick={this.createPlaylist}>I AM THE DJ</button>
+        {/* <button onClick={this.createPlaylist}>I AM THE DJ</button> */}
         PLAYLIST
           {this.renderStore()}
         USERLIST
@@ -132,7 +115,7 @@ class Playlist extends Component {
 
   const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-      AddSong, UpdateSong, RemoveSong, SetPlaylistId
+      AddSong, UpdateSong, RemoveSong
     }, dispatch)
   }
 

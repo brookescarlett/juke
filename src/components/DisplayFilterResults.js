@@ -27,8 +27,9 @@ class DisplayFilterResults extends Component {
       album: song.album.name,
       upVote: 0,
       downVote: 0,
-      inPlaylist: false,
+      currentlyPlaying: false,
       beenPlayed: false,
+      spotifyID: song.id,
       user: this.props.currentUser.display_name,
       URI: song.uri,
       datum: song

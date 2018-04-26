@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { SetDJ } from '../actions/actions.js'
 import { SetChatroom } from '../actions/actions.js'
+import { SetPlaylistId } from '../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -59,8 +60,28 @@ class Auth extends Component {
     })
   }
 
+  createPlaylist = (playlistName) => {
+    console.log('here')
+    fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      },
+      body: JSON.stringify({name: playlistName, public: true})
+    })
+    .then ( res => res.json())
+    .then ( json => this.props.SetPlaylistId(json.id))
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
+
+    if(this.state.dj === true) {
+      this.createPlaylist(this.state.chatroom)
+    }
+
     this.props.SetChatroom(this.state.chatroom)
     this.props.SetDJ(this.state.dj)
     this.props.history.push("/main")
@@ -85,12 +106,12 @@ class Auth extends Component {
 
 
 const mapStateToProps = state => {
-  return {DJ: state.DJ, chatroom: state.chatroom}
+  return {DJ: state.DJ, chatroom: state.chatroom, currentUser: state.currentUser, playlistID: state.playlistID}
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    SetDJ, SetChatroom
+    SetDJ, SetChatroom, SetPlaylistId
   }, dispatch)
 }
 
