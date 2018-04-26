@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import * as firebase from 'firebase'
 
 export let AddSong = obj => {
   return {
@@ -21,13 +22,40 @@ export let UpdateSong = obj => {
   }
 }
 
-export let AddToken = obj => {
+export let SetPlaylistId = string => {
   return {
-    type: "ADD_TOKEN",
-    payload: obj
+    type: "ADD_PLAYLISTID",
+    payload: string
   }
 }
 
+
+export function AddSongsToPlaylist(addToQueue) {
+  // debugger
+  let uris = addToQueue.map( song => song.URI)
+  console.log(uris);
+  return (dispatch) => {
+    dispatch({type: 'START_MAKING_PLAYLIST'})
+    fetch(`https://api.spotify.com/v1/users/${this.currentUser.id}/playlists/${this.playlistID}/tracks`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      },
+      body: JSON.stringify({"uris": uris})
+    })
+    .then(res => res.json())
+    .then(json => {
+      addToQueue.forEach(song => {
+        var updates = {}
+        updates['/songs/' + song.id + '/inPlaylist'] = true
+        var updateStatus = firebase.database().ref().update(updates)
+        dispatch({type: 'UPDATE_SONG', payload: song})
+      })
+    })
+  }
+}
 
 export function fetchUser() {
   return (dispatch) => {
@@ -46,29 +74,3 @@ export function fetchUser() {
   }
 
 }
-
-// function getHashParams(){
-//   var hashParams = {};
-//   var e, r = /([^&;=]+)=?([^&;]*)/g,
-//       q = window.location.hash.substring(1);
-//   while ( e = r.exec(q)) {
-//      hashParams[e[1]] = decodeURIComponent(e[2]);
-//   }
-//
-//   return hashParams
-// }
-//
-// export function fetchUser(){
-//   return (dispatch) => {
-//     dispatch({type: 'START_GETTING_USER'})
-//     return fetch('http://localhost:8888/login', {
-//       headers: 'Access-Control-Allow-Origin'
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         let params = this.getHashParams()
-//         console.log(params)
-//         .then(params => dispatch({type: 'ADD_TOKEN'}, params))
-//       })
-//   }
-// }

@@ -1,8 +1,9 @@
 export default function manageData(state = {
   songs: [],
-  tokens: [],
   loading: false,
-  currentUser: []
+  loadingPlaylist: false,
+  currentUser: [],
+  playlistID: ""
 }, action){
 
   switch(action.type) {
@@ -38,6 +39,12 @@ export default function manageData(state = {
         loading: true
       }
 
+    case 'START_MAKING_PLAYLIST':
+      return{
+        ...state,
+        loadingPlaylist: true
+      }
+
     case 'ADD_USER':
       return{
         ...state,
@@ -45,12 +52,11 @@ export default function manageData(state = {
         currentUser: action.payload
       }
 
-    case 'ADD_TOKEN':
+    case 'ADD_PLAYLISTID':
       // debugger
       return {
         ...state,
-        loading: false,
-        tokens: [...state.tokens, action.payload]
+        playlistID: action.payload
       }
 
     default:

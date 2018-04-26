@@ -27,14 +27,15 @@ class DisplayFilterResults extends Component {
       album: song.album.name,
       upVote: 0,
       downVote: 0,
+      inPlaylist: false,
+      beenPlayed: false,
       user: this.props.currentUser.display_name,
-      URI: song.uri, 
+      URI: song.uri,
       datum: song
     })
   }
 
   render(){
-    console.log(this.props.datum);
     return(
       <div>
         <div onClick={this.handleClick} id={this.props.datum}>

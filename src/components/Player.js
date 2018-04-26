@@ -17,12 +17,11 @@ class Player extends Component {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       },
       body: {
-        "context_uri": "spotify:track:1301WleyT98MSxVHPZCA6M",
+        "uris": ["spotify:track:1301WleyT98MSxVHPZCA6M"],
         "offset": {"position": 5}
       }
     })
     .then( res => console.log(res))
-    // .then( json => console.log(json) )
   }
 
   render() {
