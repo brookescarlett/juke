@@ -45,8 +45,7 @@ class Player extends Component {
 
         if (wasPlaying !== "" && isPlaying !== "") {
           if (wasPlaying.id !== isPlaying.id) {
-            updates[`/${chatroom}/` + wasPlaying.id + '/beenPlayed'] = true
-            updates[`/${chatroom}/` + wasPlaying.id + '/currentlyPlaying'] = false
+            updates[`/${chatroom}/` + wasPlaying.id] = null
             var updateVotes = firebase.database().ref().update(updates)
             debugger
           }
