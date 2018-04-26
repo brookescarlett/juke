@@ -1,13 +1,28 @@
 import React, {Component} from 'react'
+import { SetDJ } from '../actions/actions.js'
+import { SetChatroom } from '../actions/actions.js'
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
 
-export default class SignUp extends Component {
+class SignUp extends Component {
 
   render(){
     return(
       <div>
-        SIGN UP FORM GOES HERE
-        <a href="http://localhost:8888/login"><button>LOG IN WITH SPOTIFY</button></a>
+        <a href="http://localhost:8888/login"><button handleClick={this.handleSubmit}>LOG IN WITH SPOTIFY</button></a>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {DJ: state.DJ, chatroom: state.chatroom}
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    SetDJ, SetChatroom
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

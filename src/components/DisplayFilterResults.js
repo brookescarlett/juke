@@ -18,7 +18,7 @@ class DisplayFilterResults extends Component {
   }
 
   fetchFunction = (song) => {
-    let newSongRef = firebase.database().ref('songs/').push()
+    let newSongRef = firebase.database().ref(`${this.props.chatroom}`).push()
 
     newSongRef.set({
       id: newSongRef.key,
@@ -50,7 +50,7 @@ class DisplayFilterResults extends Component {
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser}
+  return {currentUser: state.currentUser, chatroom: state.chatroom}
 }
 
 export default connect(mapStateToProps)(DisplayFilterResults)

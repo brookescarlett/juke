@@ -3,7 +3,10 @@ export default function manageData(state = {
   loading: false,
   loadingPlaylist: false,
   currentUser: [],
-  playlistID: ""
+  playlistID: "",
+  DJ: false,
+  chatroom: ""
+
 }, action){
 
   switch(action.type) {
@@ -53,10 +56,21 @@ export default function manageData(state = {
       }
 
     case 'ADD_PLAYLISTID':
-      // debugger
       return {
         ...state,
         playlistID: action.payload
+      }
+
+    case 'SET_DJ':
+      return {
+        ...state,
+        DJ: action.payload
+      }
+
+    case 'SET_CHATROOM':
+      return {
+        ...state,
+        chatroom: action.payload
       }
 
     default:

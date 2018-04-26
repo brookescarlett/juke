@@ -1,9 +1,14 @@
 import React, {Component} from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
+import { SetDJ } from '../actions/actions.js'
+import { SetChatroom } from '../actions/actions.js'
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+
 
 const spotifyApi = new SpotifyWebApi()
 
-export default class Auth extends Component {
+class Auth extends Component {
 
   constructor(props){
     super(props)
@@ -27,7 +32,7 @@ export default class Auth extends Component {
     try {
       localStorage.setItem('access_token', hashParams.access_token)
       localStorage.setItem('refresh_token', hashParams.refresh_token)
-      this.props.history.push("/main")
+      // this.props.history.push("/main")
     } catch (err) {
       console.log(err)
       this.props.history.push("/signup")
@@ -37,12 +42,56 @@ export default class Auth extends Component {
     return hashParams
   }
 
+  state = {
+    chatroom: "",
+    dj: false
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      chatroom: e.target.value
+    })
+  }
+
+  handleClick = (e) => {
+    this.setState({
+      dj: e.target.checked
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.SetChatroom(this.state.chatroom)
+    this.props.SetDJ(this.state.dj)
+    this.props.history.push("/main")
+  }
+
   render(){
     return(
       <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>Chat room secret:</label>
+          <input type="text" placeholder="enter chat room token" onChange={this.handleChange}></input>
+          <label>Are you the DJ?</label>
+          <input type="checkbox" onChange={this.handleClick}></input>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     )
   }
 
 
 }
+
+
+const mapStateToProps = state => {
+  return {DJ: state.DJ, chatroom: state.chatroom}
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    SetDJ, SetChatroom
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

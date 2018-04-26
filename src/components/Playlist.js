@@ -4,7 +4,6 @@ import { AddSong } from '../actions/actions.js'
 import { UpdateSong } from '../actions/actions.js'
 import { RemoveSong } from '../actions/actions.js'
 import { SetPlaylistId } from '../actions/actions.js'
-import { AddSongsToPlaylist } from '../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -23,16 +22,16 @@ class Playlist extends Component {
   }
 
   componentDidMount = () => {
-    firebase.database().ref().child('songs').orderByKey().on('child_added', snap => {
+    firebase.database().ref().child(`${this.props.chatroom}`).orderByKey().on('child_added', snap => {
       this.props.AddSong(snap.val())
       this.addSongToPlaylist(snap.val())
     })
 
-    firebase.database().ref().child('songs').orderByKey().on('child_changed', snap => {
+    firebase.database().ref().child(`${this.props.chatroom}`).orderByKey().on('child_changed', snap => {
       this.props.UpdateSong(snap.val())
     })
 
-    firebase.database().ref().child('songs').orderByKey().on('child_removed', snap => {
+    firebase.database().ref().child(`${this.props.chatroom}`).orderByKey().on('child_removed', snap => {
       this.props.RemoveSong(snap.val())
       this.removeSongFromPlaylist(snap.val())
     })
@@ -48,7 +47,7 @@ class Playlist extends Component {
         'Accept': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       },
-      body: JSON.stringify({name: "songs", public: true})
+      body: JSON.stringify({name: `${this.props.chatroom}`, public: true})
     })
     .then ( res => res.json())
     .then ( json => this.props.SetPlaylistId(json.id))
@@ -86,32 +85,6 @@ class Playlist extends Component {
     }
   }
 
-  // componentDidUpdate = () => {
-  //   let addToQueue = this.props.songs.filter(song => song.inPlaylist === false)
-  //   let uris = addToQueue.map( song => song.URI)
-  //   console.log(uris);
-  //   if ((this.props.playlistID !== "") && ( uris !== [])) {
-  //
-  //     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists/${this.props.playlistID}/tracks`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //         'Accept': 'application/json',
-  //         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-  //       },
-  //       body: JSON.stringify({"uris": uris})
-  //     })
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       addToQueue.forEach(song => {
-  //         var updates = {}
-  //         updates['/songs/' + song.id + '/inPlaylist'] = true
-  //         var updateStatus = firebase.database().ref().update(updates)
-  //       })
-  //     })
-  //   }
-  // }
-
 
   renderStore = () => {
     return this.props.songs !== [] ? this.props.songs.map(song => {
@@ -138,6 +111,7 @@ class Playlist extends Component {
 
 
   render(){
+    console.log(this.props);
     return(
       <div>
         <button onClick={this.createPlaylist}>I AM THE DJ</button>
@@ -153,13 +127,12 @@ class Playlist extends Component {
 }
 
   const mapStateToProps = state => {
-    // debugger
-    return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID}
+    return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom}
   }
 
   const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-      AddSong, UpdateSong, RemoveSong, SetPlaylistId, AddSongsToPlaylist
+      AddSong, UpdateSong, RemoveSong, SetPlaylistId
     }, dispatch)
   }
 

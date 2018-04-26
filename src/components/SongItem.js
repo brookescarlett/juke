@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import * as firebase from 'firebase'
 
-export default class SongItem extends Component {
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+
+class SongItem extends Component {
+
 
   handleUpVote = (e) => {
+    console.log(this.props.chatroom)
     let id = this.props.datum.id
     let upVote = ++this.props.datum.upVote
 
     var updates = {}
-    updates['/songs/' + id + '/upVote'] = upVote
+    updates[`/${this.props.chatroom}/` + id + '/upVote'] = upVote
     var updateVotes = firebase.database().ref().update(updates)
 
     this.checkVotes()
@@ -19,7 +24,7 @@ export default class SongItem extends Component {
     let downVote = --this.props.datum.downVote
 
     var updates = {}
-    updates['/songs/' + id + '/downVote'] = downVote
+    updates[`/${this.props.chatroom}/` + id + '/downVote'] = downVote
     var updateVotes = firebase.database().ref().update(updates)
 
     this.checkVotes()
@@ -30,7 +35,7 @@ export default class SongItem extends Component {
 
     if (this.props.datum.upVote - Math.abs(this.props.datum.downVote) <= -10) {
       var updates = {}
-      updates['/songs/' + id ] = null
+      updates[`/${this.props.chatroom}/` + id ] = null
       var updateVotes = firebase.database().ref().update(updates)
     }
   }
@@ -50,3 +55,9 @@ export default class SongItem extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {chatroom: state.chatroom}
+}
+
+export default connect(mapStateToProps)(SongItem)
