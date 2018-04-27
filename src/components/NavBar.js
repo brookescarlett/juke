@@ -5,16 +5,28 @@ import * as actions from '../actions/actions.js'
 
 class NavBar extends Component {
 
-  componentDidMount(){
-    this.props.actions.fetchUser()
+  state = {
+    loggedIn: false
   }
 
+  componentDidMount(){
+    this.props.actions.fetchUser()
+
+    if (localStorage.getItem(`access_token`)){
+      this.setState({
+        loggedIn: true
+      })
+    }
+  }
 
   logout = () => {
-    console.log(localStorage.getItem('access_token'));
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
-    console.log(localStorage.getItem('access_token'));
+
+    this.setState({
+      loggedIn: false
+    })
+
     this.props.history.push("/signup")
 
   }
@@ -23,11 +35,12 @@ class NavBar extends Component {
     return(
       <div>
 
+        {this.state.loggedIn ?
           <div>
             <p>{this.props.name}</p>
             <p> {this.props.chatroom} </p>
-            {/* {localStorage.getItem('access_token') === null ? null : <button onClick={this.logout}>LOG OUT</button>} */}
-          </div>
+            <button onClick={this.logout}>LOG OUT</button>
+          </div> : null }
 
         <br />
       </div>

@@ -30,7 +30,7 @@ class DisplayFilterResults extends Component {
       currentlyPlaying: false,
       beenPlayed: false,
       spotifyID: song.id,
-      user: this.props.currentUser.display_name,
+      user: this.props.name,
       URI: song.uri,
       datum: song
     })
@@ -51,7 +51,7 @@ class DisplayFilterResults extends Component {
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser, chatroom: state.chatroom}
+  return {currentUser: state.currentUser, chatroom: state.chatroom, name:state.name}
 }
 
 export default connect(mapStateToProps)(DisplayFilterResults)

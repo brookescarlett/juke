@@ -7,7 +7,8 @@ export default function manageData(state = {
   playlistID: "",
   DJ: false,
   chatroom: "",
-  query: ""
+  query: "",
+  name: ""
 
 }, action){
 

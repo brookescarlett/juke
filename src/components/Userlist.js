@@ -30,7 +30,7 @@ class Userlist extends Component {
 
   renderUsers = () => {
     let uniques = this.state.usersArray.filter(this.onlyUnique)
-    return uniques.map(user => <User datum={user}/>)
+    return uniques.map(user => <User key={user.name} datum={user}/>)
   }
 
   render(){
