@@ -1,77 +1,50 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-
+import * as firebase from 'firebase'
 
 class Player extends Component {
 
   state = {
-    URL: `https://open.spotify.com/embed/user/${this.props.currentUser.id}/playlist/${this.props.playlistID}`
+    currentlyPlaying: ""
   }
 
-  componentWillReceiveProps(){
+  componentWillReceiveProps = () => {
+    let currentlyPlaying = ""
+
+    var ref = firebase.database().ref().child(`${this.props.chatroom}`)
+    ref.orderByKey().limitToFirst(1).on("child_added", function(snapshot) {
+      if (snapshot.val().currentlyPlaying === true) {
+        currentlyPlaying = snapshot.val()
+      }
+    })
+
     this.setState({
-      URL: `https://open.spotify.com/embed/user/${this.props.currentUser.id}/playlist/${this.props.playlistID}`
+      currentlyPlaying: currentlyPlaying
     })
   }
 
-  renderIframe(){
-    return(
-    <iframe src={this.state.URL} width="300" height="380"  allowtransparency="true" allow="encrypted-media" id="renderPlaylist"></iframe>
-  )
+  renderCurrentlyPlaying = () => {
+    // debugger
+    if (this.state.currentlyPlaying === "") {
+      console.log('GET OUT')
+    } else {
+      console.log(this.state.currentlyPlaying)
+      return(
+        <div>
+          <p>artwork:</p>
+          <img src={this.state.currentlyPlaying.datum.album.images[1].url}/>
+          <p>title: <strong>{this.state.currentlyPlaying.song}</strong></p>
+          <p>album: {this.state.currentlyPlaying.album}</p>
+        </div>
+      )
+    }
   }
-  //
-  // componentDidUpdate(){
-  //   this.jerry()
-  // }
-
-  jerry = () => {
-      const bigfuckinglist = document.getElementById('renderPlaylist')
-      bigfuckinglist.src = this.state.URL
-  }
-
-  // handleClick = () => {
-  //   console.log(this.props.songs[3].URI)
-  //   let playSong = this.props.songs[3]
-  //   let playSecondSong = this.props.songs[0]
-  //
-  //   fetch(`https://api.spotify.com/v1/me/player/play`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //       'Accept': 'application/json',
-  //       'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-  //     },
-  //     body: {
-  //       "uris": ["spotify:track:1301WleyT98MSxVHPZCA6M"],
-  //       "offset": {"position": 5}
-  //     }
-  //   })
-  //   .then( res => console.log(res))
-  // }
-  //
-  // render() {
-  //   return (
-  //     <div onClick={this.handleClick}>
-  //       NOW PLAYING:
-  //     </div>
-  //   )
-  // }
-
-  // renderiFrame = () => {
-  //   return (<iframe src={URL} width="300" height="380"  allowtransparency="true" allow="encrypted-media"></iframe>)
-  // }
-
 
 
   render() {
-    // const URL = `https://open.spotify.com/embed/user/${this.props.currentUser.id}/playlist/${this.props.playlistID}`
-    // console.log(URL)
-    //
-    console.log(this.props)
-
     return(
       <div>
-        {this.renderIframe()}
+        {this.state.currentlyPlaying !== "" ? this.renderCurrentlyPlaying() : null}
       </div>
 
     )
@@ -79,7 +52,7 @@ class Player extends Component {
 }
 
 function mapStateToProps(state) {
-  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID}
+  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, currentlyPlaying: state.currentlyPlaying, DJ: state.DJ, chatroom: state.chatroom}
 }
 
 export default connect(mapStateToProps)(Player)

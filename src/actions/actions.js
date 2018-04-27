@@ -43,6 +43,13 @@ export let SetChatroom = string => {
   }
 }
 
+export let SetCurrentSong = obj => {
+  return {
+    type: "SET_CURRENT_SONG",
+    payload: obj
+  }
+}
+
 
 // export function AddSongsToPlaylist(addToQueue) {
 //   // debugger

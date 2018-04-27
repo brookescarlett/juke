@@ -3,6 +3,7 @@ export default function manageData(state = {
   loading: false,
   loadingPlaylist: false,
   currentUser: [],
+  currentlyPlaying: [],
   playlistID: "",
   DJ: false,
   chatroom: ""
@@ -72,6 +73,12 @@ export default function manageData(state = {
         ...state,
         chatroom: action.payload
       }
+
+      case 'SET_CURRENT_SONG':
+        return {
+          ...state,
+          currentlyPlaying: action.payload
+        }
 
     default:
       return state
