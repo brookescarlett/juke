@@ -24,7 +24,6 @@ class Player extends Component {
   }
 
   renderCurrentlyPlaying = () => {
-    // debugger
     if (this.state.currentlyPlaying === "") {
       console.log('GET OUT')
     } else {
