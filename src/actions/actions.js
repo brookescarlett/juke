@@ -50,6 +50,13 @@ export let SetName = string => {
   }
 }
 
+export let SetQuery = string => {
+  return {
+    type: "SET_QUERY",
+    payload: string
+  }
+}
+
 export let SetCurrentSong = obj => {
   return {
     type: "SET_CURRENT_SONG",

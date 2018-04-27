@@ -9,7 +9,7 @@ class SignUp extends Component {
   render(){
     return(
       <div>
-        <a href="http://localhost:8888/login"><button handleClick={this.handleSubmit}>LOG IN WITH SPOTIFY</button></a>
+        <a href="http://localhost:8888/login"><button onClick={this.handleSubmit}>LOG IN WITH SPOTIFY</button></a>
       </div>
     )
   }

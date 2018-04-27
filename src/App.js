@@ -13,7 +13,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        <Route path="/" render={(renderProps) => <NavBar store={ this.props.store } history={ renderProps.history }/>}/>
         {/* <Router> */}
           <div>
             <Switch>

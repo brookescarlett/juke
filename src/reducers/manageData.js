@@ -6,7 +6,8 @@ export default function manageData(state = {
   currentlyPlaying: [],
   playlistID: "",
   DJ: false,
-  chatroom: ""
+  chatroom: "",
+  query: ""
 
 }, action){
 
@@ -66,6 +67,12 @@ export default function manageData(state = {
       return {
         ...state,
         DJ: action.payload
+      }
+
+    case 'SET_QUERY':
+      return {
+        ...state,
+        query: action.payload
       }
 
     case 'SET_CHATROOM':

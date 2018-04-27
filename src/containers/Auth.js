@@ -34,7 +34,6 @@ class Auth extends Component {
     try {
       localStorage.setItem('access_token', hashParams.access_token)
       localStorage.setItem('refresh_token', hashParams.refresh_token)
-      // this.props.history.push("/main")
     } catch (err) {
       console.log(err)
       this.props.history.push("/signup")

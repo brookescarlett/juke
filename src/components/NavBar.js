@@ -9,11 +9,26 @@ class NavBar extends Component {
     this.props.actions.fetchUser()
   }
 
+
+  logout = () => {
+    console.log(localStorage.getItem('access_token'));
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    console.log(localStorage.getItem('access_token'));
+    this.props.history.push("/signup")
+
+  }
+
   render(){
     return(
       <div>
-        {this.props.name ? <p>{this.props.name}</p> : null}
-        {this.props.chatroom ? <p> {this.props.chatroom} </p> : null}
+
+          <div>
+            <p>{this.props.name}</p>
+            <p> {this.props.chatroom} </p>
+            {/* {localStorage.getItem('access_token') === null ? null : <button onClick={this.logout}>LOG OUT</button>} */}
+          </div>
+
         <br />
       </div>
 

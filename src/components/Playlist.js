@@ -86,14 +86,14 @@ class Playlist extends Component {
 
 }
 
-  const mapStateToProps = state => {
-    return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom}
-  }
+const mapStateToProps = state => {
+  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom}
+}
 
-  const mapDispatchToProps = dispatch => {
-    return bindActionCreators({
-      AddSong, UpdateSong, RemoveSong
-    }, dispatch)
-  }
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    AddSong, UpdateSong, RemoveSong
+  }, dispatch)
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
