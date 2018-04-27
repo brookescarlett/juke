@@ -10,7 +10,6 @@ import {bindActionCreators} from 'redux'
 import * as firebase from 'firebase'
 
 import SongItem from '../components/SongItem'
-import User from './User'
 
 
 class Playlist extends Component {
@@ -75,32 +74,11 @@ class Playlist extends Component {
     }) : null
   }
 
-  onlyUnique = (value, index, self) => {
-    return self.indexOf(value) === index
-  }
-
-  renderUsers = () => {
-    let userArray = []
-
-    this.props.songs !== [] ? this.props.songs.map(song => {
-      userArray.push(song.user)
-    }) : null
-
-    let uniques = userArray.filter(this.onlyUnique)
-
-    return uniques.map(user => <User key={user} datum={user}/>)
-  }
-
-
   render(){
-    console.log(this.props);
     return(
       <div>
-        {/* <button onClick={this.createPlaylist}>I AM THE DJ</button> */}
         PLAYLIST
           {this.renderStore()}
-        USERLIST
-          {this.renderUsers()}
       </div>
     )
   }
