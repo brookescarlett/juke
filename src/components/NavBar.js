@@ -12,7 +12,7 @@ class NavBar extends Component {
   render(){
     return(
       <div>
-        {this.props.currentUser ? <p>{this.props.currentUser.display_name}</p> : null}
+        {this.props.name ? <p>{this.props.name}</p> : null}
         {this.props.chatroom ? <p> {this.props.chatroom} </p> : null}
         <br />
       </div>
@@ -22,7 +22,7 @@ class NavBar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser, chatroom: state.chatroom, DJ:state.DJ}
+  return {currentUser: state.currentUser, chatroom: state.chatroom, name: state.name, DJ:state.DJ}
 }
 
 function mapDispatchToProps(dispatch) {

@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Router>
+        {/* <Router> */}
           <div>
             <Switch>
               <Route exact path="/signup" render={(renderProps) => <SignUp store={ this.props.store } history={ renderProps.history }/>} />
@@ -22,7 +22,7 @@ export default class App extends Component {
               <Route exact path="/main" render={(renderProps) => <Main store={this.props.store} history={ renderProps.history }/>} />
             </Switch>
           </div>
-        </Router>
+        {/* </Router> */}
       </div>
     );
   }
