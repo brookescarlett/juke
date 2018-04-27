@@ -102,35 +102,26 @@ class Auth extends Component {
       body: JSON.stringify({name: playlistName, public: true})
     })
     .then ( res => res.json())
-    .then ( json => this.props.SetPlaylistId(json.id))
+    .then ( json => {
+      this.props.SetPlaylistId(json.id)
+      this.openInNewTab(json.id)
+    })
   }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
-  //
-  //   if(this.state.dj === true) {
-  //     this.createPlaylist(this.state.chatroom)
-  //   }
-  //
-  //   this.props.SetChatroom(this.state.chatroom)
-  //   this.props.SetDJ(this.state.dj)
-  //   this.props.history.push("/main")
-  // }
+  openInNewTab = (playlistid) => {
+    var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
+    win.focus()
+  }
 
   render(){
     return(
       <div>
-        {/* <form onSubmit={this.handleSubmit}> */}
           <label>Name:</label>
           <input type="text" name="name" placeholder="enter your name" onChange={this.handleChange}></input>
           <label>Room:</label>
           <input type="text" name="chatroom" placeholder="enter chat room token" onChange={this.handleChange}></input>
           <button onClick={this.handleJoin}>JOIN</button>
           <button onClick={this.handleCreate}>CREATE</button>
-          {/* <label>Are you the DJ?</label>
-          <input type="checkbox" onChange={this.handleClick}></input> */}
-          {/* <input type="submit" value="Submit" /> */}
-        {/* </form> */}
       </div>
     )
   }
