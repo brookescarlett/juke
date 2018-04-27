@@ -30,34 +30,30 @@ class Player extends Component {
         let isPlaying = ""
         var updates = {}
 
-        var ref = firebase.database().ref().child(`${this.props.chatroom}`)
+        var ref = firebase.database().ref().child(`${this.props.chatroom}`).child('songs')
         ref.orderByKey().limitToFirst(1).on("child_added", function(snapshot) {
           if (snapshot.val().currentlyPlaying === true) {
             wasPlaying = snapshot.val()
-            // debugger
           }
         })
 
-        var ref = firebase.database().ref().child(`${this.props.chatroom}`)
+        var ref = firebase.database().ref().child(`${this.props.chatroom}`).child('songs')
         ref.orderByKey().on("child_added", function(snapshot) {
           if (snapshot.val().song === json.item.name) {
             isPlaying = snapshot.val()
-            updates[`/${chatroom}/` + isPlaying.id + '/currentlyPlaying'] = true
+            updates[`/${chatroom}/songs/` + isPlaying.id + '/currentlyPlaying'] = true
             var updateVotes = firebase.database().ref().update(updates)
-            // debugger
           }
         })
 
         if (wasPlaying !== "" && isPlaying !== "") {
           if (wasPlaying.id !== isPlaying.id) {
-            updates[`/${chatroom}/` + wasPlaying.id] = null
+            updates[`/${chatroom}/songs/` + wasPlaying.id] = null
             var updateVotes = firebase.database().ref().update(updates)
-            // debugger
           }
         }
 
         this.props.SetCurrentSong(isPlaying)
-        // debugger
 
       })
     }

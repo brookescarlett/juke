@@ -18,7 +18,7 @@ class DisplayFilterResults extends Component {
   }
 
   fetchFunction = (song) => {
-    let newSongRef = firebase.database().ref(`${this.props.chatroom}`).push()
+    let newSongRef = firebase.database().ref(`${this.props.chatroom}`).child('songs').push()
 
     newSongRef.set({
       id: newSongRef.key,

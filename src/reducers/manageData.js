@@ -74,6 +74,12 @@ export default function manageData(state = {
         chatroom: action.payload
       }
 
+    case 'SET_NAME':
+      return {
+        ...state,
+        name: action.payload
+      }
+
       case 'SET_CURRENT_SONG':
         return {
           ...state,

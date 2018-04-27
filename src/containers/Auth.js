@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { SetDJ } from '../actions/actions.js'
 import { SetChatroom } from '../actions/actions.js'
+import { SetName } from '../actions/actions.js'
 import { SetPlaylistId } from '../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-
+import * as firebase from 'firebase'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -44,20 +45,49 @@ class Auth extends Component {
   }
 
   state = {
+    name: "",
     chatroom: "",
     dj: false
   }
 
   handleChange = (e) => {
     this.setState({
-      chatroom: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  handleClick = (e) => {
-    this.setState({
-      dj: e.target.checked
+  handleJoin = (e) => {
+    e.preventDefault()
+
+    let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
+
+    newSongRef.set({
+      name: this.state.name,
+      dj: false
+    }, () => {
+      this.props.SetName(this.state.name)
+      this.props.SetChatroom(this.state.chatroom)
+      this.props.SetDJ(false)
+      this.props.history.push("/main")
     })
+  }
+
+  handleCreate = (e) => {
+    e.preventDefault()
+
+    let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
+
+    newSongRef.set({
+      name: this.state.name,
+      dj: true
+    }, () => {
+      this.createPlaylist(this.state.chatroom)
+      this.props.SetName(this.state.name)
+      this.props.SetChatroom(this.state.chatroom)
+      this.props.SetDJ(true)
+      this.props.history.push("/main")
+    })
+
   }
 
   createPlaylist = (playlistName) => {
@@ -75,28 +105,32 @@ class Auth extends Component {
     .then ( json => this.props.SetPlaylistId(json.id))
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-
-    if(this.state.dj === true) {
-      this.createPlaylist(this.state.chatroom)
-    }
-
-    this.props.SetChatroom(this.state.chatroom)
-    this.props.SetDJ(this.state.dj)
-    this.props.history.push("/main")
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault()
+  //
+  //   if(this.state.dj === true) {
+  //     this.createPlaylist(this.state.chatroom)
+  //   }
+  //
+  //   this.props.SetChatroom(this.state.chatroom)
+  //   this.props.SetDJ(this.state.dj)
+  //   this.props.history.push("/main")
+  // }
 
   render(){
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>Chat room secret:</label>
-          <input type="text" placeholder="enter chat room token" onChange={this.handleChange}></input>
-          <label>Are you the DJ?</label>
-          <input type="checkbox" onChange={this.handleClick}></input>
-          <input type="submit" value="Submit" />
-        </form>
+        {/* <form onSubmit={this.handleSubmit}> */}
+          <label>Name:</label>
+          <input type="text" name="name" placeholder="enter your name" onChange={this.handleChange}></input>
+          <label>Room:</label>
+          <input type="text" name="chatroom" placeholder="enter chat room token" onChange={this.handleChange}></input>
+          <button onClick={this.handleJoin}>JOIN</button>
+          <button onClick={this.handleCreate}>CREATE</button>
+          {/* <label>Are you the DJ?</label>
+          <input type="checkbox" onChange={this.handleClick}></input> */}
+          {/* <input type="submit" value="Submit" /> */}
+        {/* </form> */}
       </div>
     )
   }
@@ -106,12 +140,12 @@ class Auth extends Component {
 
 
 const mapStateToProps = state => {
-  return {DJ: state.DJ, chatroom: state.chatroom, currentUser: state.currentUser, playlistID: state.playlistID}
+  return {DJ: state.DJ, chatroom: state.chatroom, currentUser: state.currentUser, playlistID: state.playlistID, name:state.name}
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    SetDJ, SetChatroom, SetPlaylistId
+    SetDJ, SetChatroom, SetPlaylistId, SetName
   }, dispatch)
 }
 

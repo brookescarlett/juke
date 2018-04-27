@@ -8,12 +8,11 @@ class SongItem extends Component {
 
 
   handleUpVote = (e) => {
-    console.log(this.props.chatroom)
     let id = this.props.datum.id
     let upVote = ++this.props.datum.upVote
 
     var updates = {}
-    updates[`/${this.props.chatroom}/` + id + '/upVote'] = upVote
+    updates[`/${this.props.chatroom}/songs/` + id + '/upVote'] = upVote
     var updateVotes = firebase.database().ref().update(updates)
 
     this.checkVotes()
@@ -24,7 +23,7 @@ class SongItem extends Component {
     let downVote = --this.props.datum.downVote
 
     var updates = {}
-    updates[`/${this.props.chatroom}/` + id + '/downVote'] = downVote
+    updates[`/${this.props.chatroom}/songs/` + id + '/downVote'] = downVote
     var updateVotes = firebase.database().ref().update(updates)
 
     this.checkVotes()
@@ -35,7 +34,7 @@ class SongItem extends Component {
 
     if (this.props.datum.upVote - Math.abs(this.props.datum.downVote) <= -10) {
       var updates = {}
-      updates[`/${this.props.chatroom}/` + id ] = null
+      updates[`/${this.props.chatroom}/songs/` + id ] = null
       var updateVotes = firebase.database().ref().update(updates)
     }
   }

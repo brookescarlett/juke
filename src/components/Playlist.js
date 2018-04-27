@@ -20,16 +20,16 @@ class Playlist extends Component {
   }
 
   componentDidMount = () => {
-    firebase.database().ref().child(`${this.props.chatroom}`).orderByKey().on('child_added', snap => {
+    firebase.database().ref().child(`${this.props.chatroom}`).child('songs').orderByKey().on('child_added', snap => {
       this.props.AddSong(snap.val())
       this.addSongToPlaylist(snap.val())
     })
 
-    firebase.database().ref().child(`${this.props.chatroom}`).orderByKey().on('child_changed', snap => {
+    firebase.database().ref().child(`${this.props.chatroom}`).child('songs').orderByKey().on('child_changed', snap => {
       this.props.UpdateSong(snap.val())
     })
 
-    firebase.database().ref().child(`${this.props.chatroom}`).orderByKey().on('child_removed', snap => {
+    firebase.database().ref().child(`${this.props.chatroom}`).child('songs').orderByKey().on('child_removed', snap => {
       this.props.RemoveSong(snap.val())
       this.removeSongFromPlaylist(snap.val())
     })

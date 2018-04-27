@@ -11,7 +11,7 @@ class Player extends Component {
   componentWillReceiveProps = () => {
     let currentlyPlaying = ""
 
-    var ref = firebase.database().ref().child(`${this.props.chatroom}`)
+    var ref = firebase.database().ref().child(`${this.props.chatroom}`).child('songs')
     ref.orderByKey().limitToFirst(1).on("child_added", function(snapshot) {
       if (snapshot.val().currentlyPlaying === true) {
         currentlyPlaying = snapshot.val()
@@ -25,9 +25,7 @@ class Player extends Component {
 
   renderCurrentlyPlaying = () => {
     if (this.state.currentlyPlaying === "") {
-      console.log('GET OUT')
     } else {
-      console.log(this.state.currentlyPlaying)
       return(
         <div>
           <p>artwork:</p>

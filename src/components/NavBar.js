@@ -22,7 +22,7 @@ class NavBar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser, chatroom: state.chatroom}
+  return {currentUser: state.currentUser, chatroom: state.chatroom, DJ:state.DJ}
 }
 
 function mapDispatchToProps(dispatch) {

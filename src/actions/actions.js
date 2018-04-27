@@ -43,6 +43,13 @@ export let SetChatroom = string => {
   }
 }
 
+export let SetName = string => {
+  return {
+    type: "SET_NAME",
+    payload: string
+  }
+}
+
 export let SetCurrentSong = obj => {
   return {
     type: "SET_CURRENT_SONG",
