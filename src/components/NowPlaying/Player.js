@@ -29,11 +29,11 @@ class Player extends Component {
     if (this.state.currentlyPlaying === "") {
     } else {
       return(
-        <div>
-          <p>artwork:</p>
+        <div className="currently-playing">
+          {/* <p>artwork:</p> */}
           <img src={this.state.currentlyPlaying.datum.album.images[1].url}/>
-          <p>title: <strong>{this.state.currentlyPlaying.song}</strong></p>
-          <p>album: {this.state.currentlyPlaying.album}</p>
+          <p><strong>{this.state.currentlyPlaying.song}</strong></p>
+          <p>{this.state.currentlyPlaying.album}</p>
         </div>
       )
     }
