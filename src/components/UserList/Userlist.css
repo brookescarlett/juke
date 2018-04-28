@@ -1,6 +1,8 @@
 .user-list {
   float: left;
-  width: 20%;
-  /* height: 50vh; */
+  width: 19%;
+  margin-left: 1%;
+  height: 550px;
   border: 1px solid white;
+  overflow-y:scroll;
 }
