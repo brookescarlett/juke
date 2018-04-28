@@ -79,8 +79,10 @@ class Playlist extends Component {
   render(){
     return(
       <div className="playlist">
-        PLAYLIST
+        <h3>Playlist</h3>
+        <div className="song-container">
           {this.renderStore()}
+        </div>
       </div>
     )
   }

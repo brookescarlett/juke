@@ -27,10 +27,12 @@ class Main extends Component {
         {this.props.chatroom !== "" ? (
           <div className="main-container">
             <Filter store={this.props.store}/>
-            <Userlist store={this.props.store} />
-            <Playlist store={this.props.store} />
-            <NowPlaying store={this.props.store} />
-            <Player store={this.props.store} />
+            <div className="flex-row">
+              <Userlist store={this.props.store} />
+              <Playlist store={this.props.store} />
+              <Player store={this.props.store} />
+              <NowPlaying store={this.props.store} />
+            </div>
           </div>
         ) : null}
       </div>

@@ -1,5 +1,32 @@
 .playlist {
-  margin-left: 25%;
-  width: 50%;
+  width: 58%;
+  margin: 0px 2%;
   border: 1px solid white;
+}
+
+.song-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.song {
+  float: left !important;
+  font-size: 12px;
+}
+
+.song-content {
+  /* display: flex; */
+}
+
+.bottom-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.votes {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
 }

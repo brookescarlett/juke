@@ -1,3 +1,5 @@
+import './Playlist.css'
+
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
 
@@ -41,17 +43,18 @@ class SongItem extends Component {
 
   render(){
     return(
-      <div>
-        <p>song title: {this.props.datum.song}</p>
-        <p>song artist: {this.props.datum.artist}</p>
-        <p>song album: {this.props.datum.album}</p>
-        <p onClick={this.handleUpVote}>upvote: {this.props.datum.upVote}</p>
-        <p onClick={this.handleDownVote}>downVote: {this.props.datum.downVote}</p>
-        <p>currentlyPlaying: {this.props.datum.currentlyPlaying ? "true" : "false"}</p>
-        <p>hasPlayed: {this.props.datum.beenPlayed ? "true" : "false"}</p>
-        <p>added by: {this.props.datum.user}</p>
-        {/* <p>data: {this.props.datum.data}</p> */}
-        <p>-----</p>
+      <div className="song">
+        <div className="song-content">
+          <p>@{this.props.datum.user}</p>
+          <p>song title: {this.props.datum.song}</p>
+        </div>
+        <div className="bottom-row">
+          <div><p>song artist: {this.props.datum.artist}</p></div>
+          <div className="votes">
+            <p onClick={this.handleUpVote}>upvote: {this.props.datum.upVote}</p>
+            <p onClick={this.handleDownVote}>downVote: {this.props.datum.downVote}</p>
+          </div>
+        </div>
       </div>
     )
   }

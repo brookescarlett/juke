@@ -1,4 +1,6 @@
 .player {
-  margin-left: 75%;
+  width: 20%;
+  /* height: 50vh; */
   border: 1px solid white;
+  margin-top: 0px;
 }

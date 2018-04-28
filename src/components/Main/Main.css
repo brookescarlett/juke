@@ -2,7 +2,16 @@
 
 .main-container {
   height: 100vh;
-  /* background-image: linear-gradient(to bottom, #434343, black 100%); */
   font-family: 'Poppins';
   background-image: linear-gradient(to bottom, #667eea, #764ba2);
+}
+/* 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+} */
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
 }
