@@ -1,3 +1,5 @@
+import './Player.css'
+
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import * as firebase from 'firebase'
@@ -40,7 +42,7 @@ class Player extends Component {
 
   render() {
     return(
-      <div>
+      <div className="player">
         {this.state.currentlyPlaying !== "" ? this.renderCurrentlyPlaying() : null}
       </div>
 

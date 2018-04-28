@@ -1,3 +1,5 @@
+import './Filter.css'
+
 import React, { Component } from 'react'
 import DisplayFilterResults from './DisplayFilterResults'
 
@@ -45,8 +47,7 @@ export default class Filter extends Component {
   render(){
     return(
       <div>
-        FILTER
-        <input type="text" onChange={this.handleChange}></input>
+        <input type="text" onChange={this.handleChange} placeholder="Search" className="filter-bar"></input>
         {this.state.searchResults !== [] ? this.renderSearchResults() : null}
       </div>
     )

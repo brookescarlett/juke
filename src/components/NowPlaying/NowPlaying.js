@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import { SetCurrentSong } from '../actions/actions.js'
+import { SetCurrentSong } from '../../actions/actions.js'
 import * as firebase from 'firebase'
 
 class Player extends Component {

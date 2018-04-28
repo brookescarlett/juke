@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.main-container {
+  height: 100vh;
+  /* background-image: linear-gradient(to bottom, #434343, black 100%); */
+  font-family: 'Poppins';
+  background-image: linear-gradient(to bottom, #667eea, #764ba2);
+}

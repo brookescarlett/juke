@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import { SetDJ } from '../actions/actions.js'
-import { SetChatroom } from '../actions/actions.js'
+import { SetDJ } from '../../actions/actions.js'
+import { SetChatroom } from '../../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 

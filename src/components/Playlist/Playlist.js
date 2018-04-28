@@ -1,15 +1,17 @@
+import './Playlist.css'
+
 import React, { Component } from 'react'
 
-import { AddSong } from '../actions/actions.js'
-import { UpdateSong } from '../actions/actions.js'
-import { RemoveSong } from '../actions/actions.js'
+import { AddSong } from '../../actions/actions.js'
+import { UpdateSong } from '../../actions/actions.js'
+import { RemoveSong } from '../../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 
 import * as firebase from 'firebase'
 
-import SongItem from '../components/SongItem'
+import SongItem from './SongItem'
 
 
 class Playlist extends Component {
@@ -76,7 +78,7 @@ class Playlist extends Component {
 
   render(){
     return(
-      <div>
+      <div className="playlist">
         PLAYLIST
           {this.renderStore()}
       </div>

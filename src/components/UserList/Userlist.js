@@ -1,3 +1,5 @@
+import './Userlist.css'
+
 import React, {Component} from 'react'
 import * as firebase from 'firebase'
 import {connect} from 'react-redux'
@@ -35,8 +37,8 @@ class Userlist extends Component {
 
   render(){
     return(
-      <div>
-        USERLIST MAYUN
+      <div className="user-list">
+        <h3 className="sub-head">Users</h3>
         <p>DJ: {this.state.dj !== "" ? this.state.dj.name : null}</p>
         {this.renderUsers()}
       </div>

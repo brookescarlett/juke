@@ -3,10 +3,10 @@ import './App.css'
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-import SignUp from './containers/SignUp'
-import Auth from './containers/Auth'
-import Main from './containers/Main'
-import NavBar from './components/NavBar'
+import SignUp from './components/LogIn/SignUp'
+import Auth from './components/LogIn/Auth'
+import Main from './components/Main/Main'
+import NavBar from './components/Nav/NavBar'
 
 export default class App extends Component {
 

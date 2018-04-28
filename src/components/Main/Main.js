@@ -1,12 +1,17 @@
+import './Main.css'
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import Filter from '../components/Filter'
-import Playlist from '../components/Playlist'
-import Userlist from '../components/Userlist'
-import NowPlaying from '../components/NowPlaying'
-import Player from '../components/Player'
+import Filter from '../Filter/Filter'
+
+import Playlist from '../Playlist/Playlist'
+
+import Userlist from '../UserList/Userlist'
+
+import NowPlaying from '../NowPlaying/NowPlaying'
+import Player from '../NowPlaying/Player'
 
 class Main extends Component {
 
@@ -20,10 +25,10 @@ class Main extends Component {
     return (
       <div>
         {this.props.chatroom !== "" ? (
-          <div>
+          <div className="main-container">
             <Filter store={this.props.store}/>
-            <Playlist store={this.props.store} />
             <Userlist store={this.props.store} />
+            <Playlist store={this.props.store} />
             <NowPlaying store={this.props.store} />
             <Player store={this.props.store} />
           </div>
