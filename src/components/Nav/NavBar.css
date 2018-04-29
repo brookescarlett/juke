@@ -1,75 +1,75 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: rgba(30, 29, 70);
-    overflow: hidden;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    height: 5vh;
+.navigation {
+  background-color: rgba(30, 29, 70);
+  overflow: hidden;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.9)
 }
 
-/* Style the links inside the navigation bar */
-.topnav li {
-    float: left;
-    display: block;
-    color: rgba(255,255,255, 0.6);
-    text-align: center;
-    padding: 5px 8px 5px 16px;
-    text-decoration: none;
-    font-size: 15px;
+.nav-bar {
+  margin: 0px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
-.dropdown {
-    float: left;
-    overflow: hidden;
+#left-side-nav {
+  text-align: left;
 }
 
-/* Style the dropdown button to fit inside the topnav */
-.dropdown .dropbtn {
-    font-size: 15px;
-    border: none;
-    outline: none;
-    color: rgba(255,255,255, 0.6);
-    padding: 5px 0px;
-    background-color: inherit;
-    font-family: inherit;
-    margin-top: 2.5px;
+#right-side-nav {
+  text-align: right;
+  float: right;
 }
 
-/* Style the dropdown content (hidden by default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+#left-side-nav > p {
+  margin-left: 15px;
 }
 
-/* Style the links inside the dropdown */
-.dropdown-content li {
-    float: left;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+.groupme {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
-/* Add a dark background on topnav links and the dropdown button on hover */
-.dropdown:hover .dropbtn {
-    background-color: #555;
-    color: white;
+#right-side-nav svg {
+  margin-bottom: 1.5px;
 }
 
-/* Add a grey background to dropdown links on hover */
-.dropdown-content li:hover {
-    background-color: #ddd;
-    color: black;
+#right-side-nav p {
+  margin-right: 2.5px;
+  color: rgba(255, 255, 255, 0.45)
 }
 
-/* Show the dropdown menu when the user moves the mouse over the dropdown button */
-.dropdown:hover .dropdown-content {
-    display: block;
+.drop-down-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+}
+
+.log-out-button {
+  outline: none;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  border: none;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  color: rgba(30, 29, 70);
+  padding: 3px 18px;
+}
+
+span.user-name {
+  color: rgba(255, 255, 255, 0.9)
 }

@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.footer {
+    background-color: rgba(30, 29, 70);
+    overflow: hidden;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    height: 5vh;
+    position: fixed;
+    bottom: 0;
+}

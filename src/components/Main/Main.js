@@ -10,6 +10,7 @@ import Playlist from '../Playlist/Playlist'
 import Userlist from '../UserList/Userlist'
 import NowPlaying from '../NowPlaying/NowPlaying'
 import Player from '../NowPlaying/Player'
+import Footer from '../Footer/Footer'
 
 class Main extends Component {
 
@@ -36,6 +37,7 @@ class Main extends Component {
                 <NowPlaying store={this.props.store} />
               </div>
             </div>
+            <Footer store={this.props.store}/>
           </div>
         ) : null}
       </div>

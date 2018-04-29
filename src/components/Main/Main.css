@@ -5,14 +5,14 @@ h3, p {
 }
 
 .main-container {
-  height: 95vh;
+  height: 100vh;
   font-family: 'Poppins';
   background: linear-gradient(to -225deg, #4088f2 0%, #6146b3 100%);
 }
 
 .main-content {
   width: 70%;
-  height: 80vh;
+  height: 75vh;
   margin: 0px 2.5%;
 }
 
@@ -23,7 +23,7 @@ h3, p {
 
 .sidebar {
   width: 22.5%;
-  height: 80vh;
+  height: 75vh;
   margin-right: 2.5%;
   display: flex;
   flex-direction: column;
