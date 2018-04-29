@@ -1,8 +1,16 @@
 .user-list {
-  float: left;
-  width: 20%;
-  margin-left: 1%;
-  height: 550px;
-  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.15);
+  height: 40%;
+  margin-bottom: 5%;
   overflow-y:scroll;
+  color: white;
+}
+
+.user-list p {
+  font-size: 12px;
+  display: block;
+  -webkit-margin-before: 0.4em;
+  -webkit-margin-after: 0.4em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
 }

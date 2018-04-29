@@ -64,6 +64,12 @@ export let SetCurrentSong = obj => {
   }
 }
 
+export let ToggleModal = () => {
+  return {
+    type: "TOGGLE_MODAL"
+  }
+}
+
 
 // export function AddSongsToPlaylist(addToQueue) {
 //   // debugger

@@ -49,19 +49,16 @@ class NavBar extends Component {
   render(){
     return(
 
-      <div class="topnav" id="myTopnav">
+      <div className="topnav" id="myTopnav">
         {this.state.loggedIn ?
         <div>
-
-          {/* <li><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></li> */}
-
           <li>Hello, {this.props.name}</li>
 
-          <div class="dropdown">
-            <button class="dropbtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-down"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+          <div className="dropdown">
+            <button className="dropbtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevrons-down"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <li><button onClick={this.logout}>LOG OUT</button></li>
             </div>
           </div>

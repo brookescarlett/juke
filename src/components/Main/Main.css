@@ -5,22 +5,27 @@ h3, p {
 }
 
 .main-container {
-  height: 100vh;
+  height: 95vh;
+  /* width: 100%; */
   font-family: 'Poppins';
-  /* background-image: linear-gradient(to bottom, #667eea, #764ba2); */
-  background: linear-gradient(to -225deg, #4776e6 0%, #7254cb 100%);
-  /* background-image: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%); */
-  /* background-image: linear-gradient(to top, #443da3 0%, #667eea 100%); */
-  /* background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%); */
-  /* background-image: linear-gradient(-225deg, #49199e 0%, #5753C9 48%, #6E7FF3 100%); */
+  background: linear-gradient(to -225deg, #4088f2 0%, #6146b3 100%);
 }
-/*
-.flex-col {
-  display: flex;
-  flex-direction: column;
-} */
+
+.main-content {
+  width: 70%;
+  height: 80vh;
+  margin: 0px 2.5%;
+}
 
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.sidebar {
+  width: 22.5%;
+  height: 80vh;
+  margin-right: 2.5%;
+  display: flex;
+  flex-direction: column;
 }

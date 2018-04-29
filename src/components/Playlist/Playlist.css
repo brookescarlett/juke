@@ -1,10 +1,9 @@
 .playlist {
-  width: 56%;
-  margin: 0px 1%;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   color: rgba(255, 255, 255, 0.95);
-  height: 550px;
+  height: 80vh;
   overflow-y:scroll;
 }
 

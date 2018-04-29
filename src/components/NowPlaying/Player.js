@@ -43,7 +43,6 @@ class Player extends Component {
   render() {
     return(
       <div className="player">
-        <h3>Now Playing</h3>
         {this.state.currentlyPlaying !== "" ? this.renderCurrentlyPlaying() : null}
       </div>
 

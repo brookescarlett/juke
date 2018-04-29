@@ -8,7 +8,8 @@ export default function manageData(state = {
   DJ: false,
   chatroom: "",
   query: "",
-  name: ""
+  name: "",
+  displayModal: false
 
 }, action){
 
@@ -88,11 +89,17 @@ export default function manageData(state = {
         name: action.payload
       }
 
-      case 'SET_CURRENT_SONG':
-        return {
-          ...state,
-          currentlyPlaying: action.payload
-        }
+    case 'SET_CURRENT_SONG':
+      return {
+        ...state,
+        currentlyPlaying: action.payload
+      }
+
+    case 'TOGGLE_MODAL':
+      return {
+        ...state,
+        displayModal: !this.state.displayModal
+      }
 
     default:
       return state

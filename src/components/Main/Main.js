@@ -28,10 +28,14 @@ class Main extends Component {
           <div className="main-container">
             <Filter store={this.props.store}/>
             <div className="flex-row">
-              <Userlist store={this.props.store} />
-              <Playlist store={this.props.store} />
-              <Player store={this.props.store} />
-              <NowPlaying store={this.props.store} />
+              <div className="main-content">
+                <Playlist store={this.props.store} />
+              </div>
+              <div className="sidebar">
+                <Userlist store={this.props.store} />
+                <Player store={this.props.store} />
+                <NowPlaying store={this.props.store} />
+              </div>
             </div>
           </div>
         ) : null}

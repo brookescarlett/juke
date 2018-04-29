@@ -39,7 +39,7 @@ class Userlist extends Component {
     return(
       <div className="user-list">
         <h3 className="sub-head">Users</h3>
-        <p>DJ: {this.state.dj !== "" ? this.state.dj.name : null}</p>
+        <p><strong>DJ: {this.state.dj !== "" ? this.state.dj.name : null}</strong></p>
         {this.renderUsers()}
       </div>
     )
