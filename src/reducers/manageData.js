@@ -98,7 +98,7 @@ export default function manageData(state = {
     case 'TOGGLE_MODAL':
       return {
         ...state,
-        displayModal: !this.state.displayModal
+        displayModal: action.payload
       }
 
     default:

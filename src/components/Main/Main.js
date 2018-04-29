@@ -5,11 +5,8 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import Filter from '../Filter/Filter'
-
 import Playlist from '../Playlist/Playlist'
-
 import Userlist from '../UserList/Userlist'
-
 import NowPlaying from '../NowPlaying/NowPlaying'
 import Player from '../NowPlaying/Player'
 

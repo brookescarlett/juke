@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import * as firebase from 'firebase'
+import { ToggleModal } from '../../actions/actions.js'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 class DisplayFilterResults extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state={
       songData: []
@@ -13,6 +15,8 @@ class DisplayFilterResults extends Component {
   }
 
   handleClick = (e) => {
+    this.props.ToggleModal(false)
+
     let song = this.props.datum
     this.fetchFunction(song)
   }
@@ -51,7 +55,13 @@ class DisplayFilterResults extends Component {
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser, chatroom: state.chatroom, name:state.name}
+  return {currentUser: state.currentUser, chatroom: state.chatroom, name:state.name, displayModal: state.displayModal}
 }
 
-export default connect(mapStateToProps)(DisplayFilterResults)
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    ToggleModal
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayFilterResults)

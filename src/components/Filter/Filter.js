@@ -1,9 +1,14 @@
 import './Filter.css'
 
 import React, { Component } from 'react'
-import DisplayFilterResults from './DisplayFilterResults'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import { ToggleModal } from '../../actions/actions.js'
 
-export default class Filter extends Component {
+import DisplayFilterResults from './DisplayFilterResults'
+import Modal from 'react-modal'
+
+class Filter extends Component {
 
   constructor(props) {
     super(props)
@@ -14,6 +19,7 @@ export default class Filter extends Component {
   }
 
   handleChange = (e) => {
+    e.preventDefault()
     let query = e.target.value.replace(" ", "+")
 
     if (query !== "") {
@@ -26,6 +32,8 @@ export default class Filter extends Component {
       })
       .then(res => res.json())
       .then(json => {
+
+        this.props.ToggleModal(true)
 
         json.tracks !== undefined ?
         (this.setState({
@@ -40,6 +48,36 @@ export default class Filter extends Component {
     }
   }
 
+  listenKeyboard = (event) => {
+    if (event.key === 'Escape' || event.keyCode === 27) {
+      this.props.ToggleModal(false)
+    }
+  }
+
+  componentDidMount = () => {
+    if (this.props.ToggleModal(true)) {
+      window.addEventListener('keydown', this.listenKeyboard, true)
+    }
+  }
+
+  onClose() {
+    this.props.ToggleModal(false)
+  }
+
+  componentWillUnmount = () => {
+    if (this.props.ToggleModal(false)) {
+      window.removeEventListener('keydown', this.listenKeyboard, true)
+    }
+  }
+
+  onOverlayClick = () => {
+    this.props.ToggleModal(false)
+  }
+
+  onDialogClick = (event) => {
+    event.stopPropagation()
+  }
+
   renderSearchResults = () => {
     return this.state.searchResults.map (song => <DisplayFilterResults key={song.id} datum={song}/>)
   }
@@ -47,9 +85,43 @@ export default class Filter extends Component {
   render(){
     return(
       <div>
+
         <input type="text" onChange={this.handleChange} placeholder="Search" className="filter-bar"></input>
+
+        {this.props.displayModal ?
+        <div>
+          <div className="modal-overlay-div"  />
+          <div className="modal-content-div" onClick={this.onOverlayClick}>
+            <div className="modal-dialog-div"  onClick={this.onDialogClick}>
+            {this.state.searchResults !== [] ? this.renderSearchResults() : null}
+            </div>
+          </div>
+        </div> : null }
+
+        {/* <Modal
+          isOpen={this.props.displayModal}
+          // onAfterOpen={this.afterOpenModal}
+          // onRequestClose={this.closeModal}
+          // style={customStyles}
+          contentLabel="Example Modal">
+
+
         {this.state.searchResults !== [] ? this.renderSearchResults() : null}
-      </div>
+
+       </Modal> */}
+     </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {displayModal: state.displayModal}
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    ToggleModal
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

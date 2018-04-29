@@ -64,9 +64,10 @@ export let SetCurrentSong = obj => {
   }
 }
 
-export let ToggleModal = () => {
+export let ToggleModal = (bool) => {
   return {
-    type: "TOGGLE_MODAL"
+    type: "TOGGLE_MODAL",
+    payload: bool
   }
 }
 
