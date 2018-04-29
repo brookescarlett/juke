@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
+import NavBar from '../Nav/NavBar'
 import Filter from '../Filter/Filter'
 import Playlist from '../Playlist/Playlist'
 import Userlist from '../UserList/Userlist'
@@ -23,6 +24,7 @@ class Main extends Component {
       <div>
         {this.props.chatroom !== "" ? (
           <div className="main-container">
+            <NavBar store={this.props.store}/>
             <Filter store={this.props.store}/>
             <div className="flex-row">
               <div className="main-content">

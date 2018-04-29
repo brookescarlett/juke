@@ -13,8 +13,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/" render={(renderProps) => <NavBar store={ this.props.store } history={ renderProps.history }/>}/>
-        {/* <Router> */}
+        {/* <Route path="/" render={(renderProps) => <NavBar store={ this.props.store } history={ renderProps.history }/>}/> */}
           <div>
             <Switch>
               <Route exact path="/signup" render={(renderProps) => <SignUp store={ this.props.store } history={ renderProps.history }/>} />
@@ -22,7 +21,6 @@ export default class App extends Component {
               <Route exact path="/main" render={(renderProps) => <Main store={this.props.store} history={ renderProps.history }/>} />
             </Switch>
           </div>
-        {/* </Router> */}
       </div>
     );
   }
