@@ -4,7 +4,9 @@
   height: 30px;
   border-radius: 150px;
   border: 0px solid white;
-  background-color: rgba(255, 255, 255, .3)
+  /* background-color: rgba(255, 255, 255, .3); */
+  position: relative;
+  z-index: 10000;
 }
 
 .filter-bar::placeholder {
@@ -28,19 +30,15 @@
 
 .modal-content-div {
     position: fixed;
-    /* top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0; */
-    width: 80%;
+    width: 78%;
     height: 500px;
-    margin-left: 10%;
-    z-index: 10000;
+    margin-left: 9%;
+    z-index: 9999;
     overflow: auto;
-    text-align: center;
+    text-align: left;
     padding: 4px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, .6)
+    background-color: rgba(255, 255, 255, 1)
 }
 
 .modal-content-div:after {
@@ -61,4 +59,32 @@
     max-width: auto;
     cursor: default;
     border-radius: 4px;
+    margin: 15px;
+    color: rgba(63, 63, 63, 0.9)
+}
+
+.modal-dialog-div img {
+  width: 36px;
+  border-radius: 100px;
+}
+
+.modal-dialog-div p {
+  display: block;
+  font-size: 12px;
+  -webkit-margin-before: 0.2em;
+  -webkit-margin-after: 0.2em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+.display-filter-result {
+  margin-bottom: 10px;
+  /* border-bottom: 1px solid #1f0a64; */
+}
+
+.display-flex-col {
+  margin-left: 5px;
+  display: inline-block;
+  /* padding-bottom: 2px; */
+
 }

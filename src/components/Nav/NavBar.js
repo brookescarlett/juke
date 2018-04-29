@@ -34,23 +34,12 @@ class NavBar extends Component {
 
   }
 
-  // handleClick = () => {
-  //   this.setState({
-  //     display: !this.state.display
-  //   })
-  // }
-  //
-  // handleRender = () => {
-  //   let display = document.getElementByClassName('.dropdown-content')
-  //   let toDisplay = this.state.display ? "display: block" : "display: none"
-  //   display.style.display = toDisplay
-  // }
 
   render(){
     return(
 
       <div className="topnav" id="myTopnav">
-        {this.state.loggedIn ?
+        {this.props.name ?
         <div>
           <li>Hello, {this.props.name}</li>
 

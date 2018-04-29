@@ -41,13 +41,17 @@ class DisplayFilterResults extends Component {
   }
 
   render(){
+    console.log(this.props.datum);
     return(
       <div>
-        <div onClick={this.handleClick} id={this.props.datum}>
-          <p id={this.props.datum}>Track: {this.props.datum.name}</p>
-          <p id={this.props.datum}>Artist: {this.props.datum.artists[0].name}</p>
-          <p id={this.props.datum}>Album: {this.props.datum.album.name}</p>
-          <p>---</p>
+        <div onClick={this.handleClick} id={this.props.datum} className="display-filter-result">
+          <div className="display-flex-row">
+            <img src= {this.props.datum.album.images[2].url}/>
+            <div className="display-flex-col">
+              <p id={this.props.datum}>{this.props.datum.name}</p>
+              <p id={this.props.datum}> {this.props.datum.artists[0].name}</p>
+            </div>
+          </div>
         </div>
       </div>
     )
