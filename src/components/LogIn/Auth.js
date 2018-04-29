@@ -114,13 +114,22 @@ class Auth extends Component {
 
   render(){
     return(
-      <div>
-          <label>Name:</label>
-          <input type="text" name="name" placeholder="enter your name" onChange={this.handleChange}></input>
-          <label>Room:</label>
-          <input type="text" name="chatroom" placeholder="enter chat room token" onChange={this.handleChange}></input>
-          <button onClick={this.handleJoin}>JOIN</button>
-          <button onClick={this.handleCreate}>CREATE</button>
+      <div className="auth-background">
+            <div className="center">
+              <div className="form-box">
+
+                <div className="auth-inputs">
+                  <input type="text" name="name" placeholder="Enter your name" onChange={this.handleChange} className="input-field"></input>
+
+                  <input type="text" name="chatroom" placeholder="Enter or create your room's token" onChange={this.handleChange} className="input-field"></input>
+                </div>
+
+                <div className="auth-buttons">
+                  <button onClick={this.handleJoin} className="auth-button" id="join">JOIN</button>
+                  <button onClick={this.handleCreate} className="auth-button" id="create">CREATE</button>
+                </div>
+            </div>
+        </div>
       </div>
     )
   }

@@ -10,7 +10,7 @@ class SignUp extends Component {
 
   render(){
     return(
-      <div className="sign-up">
+      <div className="animation">
         <div className="center">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
           	 width="48px" height="48px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">

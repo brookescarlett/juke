@@ -6,7 +6,6 @@ h3, p {
 
 .main-container {
   height: 95vh;
-  /* width: 100%; */
   font-family: 'Poppins';
   background: linear-gradient(to -225deg, #4088f2 0%, #6146b3 100%);
 }
