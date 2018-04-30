@@ -12,6 +12,7 @@ class Filter extends Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       searchResults: []
     }
@@ -19,6 +20,7 @@ class Filter extends Component {
 
   handleChange = (e) => {
     e.preventDefault()
+
     let query = e.target.value.replace(" ", "+")
 
     if (query !== "") {
@@ -62,6 +64,8 @@ class Filter extends Component {
   }
 
   onClose() {
+    let filt = document.getElementById('filter')
+    filt.value = ""
     this.props.ToggleModal(false)
   }
 
@@ -72,6 +76,8 @@ class Filter extends Component {
   }
 
   onOverlayClick = () => {
+    let filt = document.getElementById('filter')
+    filt.value = ""
     this.props.ToggleModal(false)
   }
 
@@ -90,7 +96,7 @@ class Filter extends Component {
   render(){
     return(
       <div>
-        <input type="text" onChange={this.handleChange} placeholder="Search" className="filter-bar" style={{"backgroundColor": this.styleProps()}}></input>
+        <input id="filter" type="text" onChange={this.handleChange} placeholder="Search" className="filter-bar" style={{"backgroundColor": this.styleProps()}}></input>
         {this.props.displayModal === true ?
         <div>
           <div className="modal-overlay-div" onClick={this.onOverlayClick} />

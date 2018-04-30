@@ -15,6 +15,8 @@ class DisplayFilterResults extends Component {
   }
 
   handleClick = (e) => {
+    let filt = document.getElementById('filter')
+    filt.value = ""
     this.props.ToggleModal(false)
 
     let song = this.props.datum
