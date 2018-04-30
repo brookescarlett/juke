@@ -7,6 +7,9 @@ import { SetPlaylistId } from '../../actions/actions.js'
 import {fetchUser} from '../../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
+
+import BigLogo from '../../svgs/BigLogo'
+
 import * as firebase from 'firebase'
 
 const spotifyApi = new SpotifyWebApi()
@@ -40,7 +43,6 @@ class Auth extends Component {
       this.props.history.push("/signup")
     }
 
-    console.log(localStorage)
     return hashParams
   }
 
@@ -122,6 +124,10 @@ class Auth extends Component {
     return(
       <div className="auth-background">
             <div className="center">
+              <div className="big-logo">
+                <BigLogo />
+              </div>
+
               <div className="form-box">
 
                 <div className="auth-inputs">

@@ -66,14 +66,19 @@ div.center {
 
 .logo {
 	margin-top: 15px;
-	margin-bottom: 40px;
   width: 500px;
   height: auto;
   font-family: 'Poppins';
   font-weight: bolder;
   font-size: 40px;
 	color: white;
+	margin-bottom: 40px;
 }
+
+/* .description {
+	margin-top: 0px;
+	font-size: 12px;
+} */
 
 .center a {
 	text-decoration: none;
@@ -140,4 +145,9 @@ div.center {
 
 .auth-background {
 	background: linear-gradient(to -225deg, #4088f2 0%, #6146b3 100%);
+}
+
+.big-logo {
+	transform: scale(1.5);
+	padding-bottom: 20px;
 }

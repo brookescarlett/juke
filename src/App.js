@@ -10,8 +10,6 @@ import Main from './components/Main/Main'
 export default class App extends Component {
 
   render() {
-
-    console.log('here');
     return (
       <div className="App">
         <div>

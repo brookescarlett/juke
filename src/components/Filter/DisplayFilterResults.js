@@ -41,7 +41,6 @@ class DisplayFilterResults extends Component {
   }
 
   render(){
-    console.log(this.props.datum);
     return(
       <div>
         <div onClick={this.handleClick} id={this.props.datum} className="display-filter-result">

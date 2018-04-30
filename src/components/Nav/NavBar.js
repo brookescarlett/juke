@@ -44,7 +44,7 @@ class NavBar extends Component {
   }
 
   renderGreeting = () => {
-    return this.state.display ? <button onClick={this.logout} className="log-out-button">Log Out</button> : <p>hello,<span className="user-name"> {this.props.name}</span></p>
+    return this.state.display ? <button onClick={this.logout} className="log-out-button">Log Out</button> : <span>hello,<span className="user-name"> {this.props.name}</span></span>
   }
 
 

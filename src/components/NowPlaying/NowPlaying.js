@@ -94,7 +94,6 @@ class Player extends Component {
 
   fetchFunction = (song) => {
     let newSongRef = firebase.database().ref(`${this.props.chatroom}`).child('songs').push()
-    debugger
     newSongRef.set({
       id: newSongRef.key,
       song: song.name,
@@ -114,8 +113,6 @@ class Player extends Component {
   render(){
     return(
       <div>
-        {/* {this.getDJRecs()} */}
-        {/* {this.getDJRecs()} */}
       </div>
     )
   }
