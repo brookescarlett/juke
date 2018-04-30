@@ -84,6 +84,13 @@ export let SetVolume = (num) => {
   }
 }
 
+export let AddSongForRecs = (uri) => {
+  return {
+    type: "GET_RECS",
+    payload: uri
+  }
+}
+
 
 // export function AddSongsToPlaylist(addToQueue) {
 //   // debugger

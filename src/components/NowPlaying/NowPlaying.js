@@ -8,8 +8,16 @@ import * as firebase from 'firebase'
 
 class Player extends Component {
 
+  state = {
+    getSpotifyRecs: false
+  }
+
   componentDidMount = () => {
     setInterval(this.getDJsTracks, 2000)
+  }
+
+  componentWillReceiveProps = () => {
+    this.props.songs.length >= 1 ? this.setState({getSpotifyRecs: true}, () => this.getDJRecs()) : null
   }
 
   getDJsTracks = () => {
@@ -61,9 +69,53 @@ class Player extends Component {
     }
   }
 
+  getSongsForRecs = () => {
+    let seedTracks = this.props.seedTracks.length > 5 ? this.props.seedTracks.slice(-5) : this.props.seedTracks
+    console.log(seedTracks);
+    return this.props.seedTracks.length >= 1 ? seedTracks.join() : null
+  }
+
+  getDJRecs = () => {
+    if (this.props.DJ && this.props.songs.length === 0 && this.state.getSpotifyRecs) {
+      fetch(`https://api.spotify.com/v1/recommendations?seed_tracks=${this.getSongsForRecs()}`, {
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      })
+      .then(res => res.json())
+      .then(json => {
+        console.log(json.tracks[0])
+        this.fetchFunction(json.tracks[0])
+      })
+    }
+  }
+
+  fetchFunction = (song) => {
+    let newSongRef = firebase.database().ref(`${this.props.chatroom}`).child('songs').push()
+    debugger
+    newSongRef.set({
+      id: newSongRef.key,
+      song: song.name,
+      artist: song.artists[0].name,
+      album: song.album.name,
+      upVote: 0,
+      downVote: 0,
+      currentlyPlaying: false,
+      beenPlayed: false,
+      spotifyID: song.id,
+      user: this.props.name,
+      URI: song.uri,
+      datum: song
+    })
+  }
+
   render(){
     return(
       <div>
+        {/* {this.getDJRecs()} */}
+        {/* {this.getDJRecs()} */}
       </div>
     )
   }
@@ -71,7 +123,7 @@ class Player extends Component {
 }
 
 function mapStateToProps(state) {
-  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, DJ :state.DJ, chatroom:state.chatroom, playPause: state.playPause, volume:state.volume}
+  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, DJ :state.DJ, chatroom:state.chatroom, playPause: state.playPause, volume:state.volume, seedTracks:state.seedTracks, name:state.name}
 }
 
 const mapDispatchToProps = dispatch => {

@@ -11,7 +11,8 @@ export default function manageData(state = {
   name: "",
   displayModal: false,
   playPause: false,
-  volume: 0
+  volume: 0,
+  seedTracks: []
 
 }, action){
 
@@ -114,6 +115,13 @@ export default function manageData(state = {
       ...state,
       volume: action.payload
     }
+
+    case 'GET_RECS':
+      return{
+      ...state,
+      seedTracks: [...state.seedTracks, action.payload]
+    }
+
 
     default:
       return state

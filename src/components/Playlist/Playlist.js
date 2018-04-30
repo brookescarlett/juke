@@ -3,6 +3,7 @@ import './Playlist.css'
 import React, { Component } from 'react'
 
 import { AddSong } from '../../actions/actions.js'
+import { AddSongForRecs } from '../../actions/actions.js'
 import { UpdateSong } from '../../actions/actions.js'
 import { RemoveSong } from '../../actions/actions.js'
 import { connect } from 'react-redux'
@@ -19,6 +20,7 @@ class Playlist extends Component {
   componentDidMount = () => {
     firebase.database().ref().child(`${this.props.chatroom}`).child('songs').orderByKey().on('child_added', snap => {
       this.props.AddSong(snap.val())
+      this.props.AddSongForRecs(snap.val().spotifyID)
       this.addSongToPlaylist(snap.val())
     })
 
@@ -87,12 +89,12 @@ class Playlist extends Component {
 }
 
 const mapStateToProps = state => {
-  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom}
+  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom, seedTracks:state.seedTracks}
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    AddSong, UpdateSong, RemoveSong
+    AddSong, UpdateSong, RemoveSong, AddSongForRecs
   }, dispatch)
 }
 

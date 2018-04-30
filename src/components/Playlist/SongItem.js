@@ -7,27 +7,44 @@ import { connect } from 'react-redux'
 
 class SongItem extends Component {
 
+  // state = {
+  //   disableUp: false,
+  //   disableDown: false
+  // }
 
   handleUpVote = (e) => {
-    let id = this.props.datum.id
-    let upVote = ++this.props.datum.upVote
+    // if (this.state.disableUp === false) {
+      let id = this.props.datum.id
+      let upVote = ++this.props.datum.upVote
 
-    var updates = {}
-    updates[`/${this.props.chatroom}/songs/` + id + '/upVote'] = upVote
-    var updateVotes = firebase.database().ref().update(updates)
+      var updates = {}
+      updates[`/${this.props.chatroom}/songs/` + id + '/upVote'] = upVote
+      var updateVotes = firebase.database().ref().update(updates)
 
-    this.checkVotes()
+      this.checkVotes()
+
+      this.setState({
+        disableUp: true
+      })
+    // }
+
   }
 
   handleDownVote = (e) => {
-    let id = this.props.datum.id
-    let downVote = ++this.props.datum.downVote
+    // if (this.state.disableDown === false) {
+      let id = this.props.datum.id
+      let downVote = ++this.props.datum.downVote
 
-    var updates = {}
-    updates[`/${this.props.chatroom}/songs/` + id + '/downVote'] = downVote
-    var updateVotes = firebase.database().ref().update(updates)
+      var updates = {}
+      updates[`/${this.props.chatroom}/songs/` + id + '/downVote'] = downVote
+      var updateVotes = firebase.database().ref().update(updates)
 
-    this.checkVotes()
+      this.checkVotes()
+
+      this.setState({
+        disableDown: true
+      })
+    // }
   }
 
   checkVotes = () => {
