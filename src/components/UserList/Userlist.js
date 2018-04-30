@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import * as firebase from 'firebase'
 import {connect} from 'react-redux'
 import User from './User'
+import UUID from 'uuid'
 
 class Userlist extends Component {
 
@@ -32,14 +33,14 @@ class Userlist extends Component {
 
   renderUsers = () => {
     let uniques = this.state.usersArray.filter(this.onlyUnique)
-    return uniques.map(user => <User key={user.name} datum={user}/>)
+    return uniques.map(user => <User key={ UUID() } datum={user}/>)
   }
 
   render(){
     return(
       <div className="user-list">
         <h3 className="sub-head">Users</h3>
-        <p><strong>DJ: {this.state.dj !== "" ? this.state.dj.name : null}</strong></p>
+        <p>{this.state.dj !== "" ? `DJ: ${this.state.dj.name}` : "to play music, you'll need a dj!"}</p>
         {this.renderUsers()}
       </div>
     )
