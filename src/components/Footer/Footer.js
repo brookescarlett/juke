@@ -12,6 +12,7 @@ import Play from '../../svgs/Play'
 import Pause from '../../svgs/Pause'
 import FastForward from '../../svgs/FastForward'
 import Volume from '../../svgs/Volume'
+import Logo from '../../svgs/Logo'
 
 class Footer extends Component {
 
@@ -23,28 +24,6 @@ class Footer extends Component {
     }
 
   }
-
-  // componentWillReceiveProps = () => {
-  //   console.log(this.props.currentlyPlaying)
-  //   return this.props.currentlyPlaying !== [] ? this.renderCurrentlyPlaying() : null
-  // }
-  //
-  // renderCurrentlyPlaying = () => {
-  //   let nowPlaying = document.getElementsByClassName('now-playing')
-  //   if (this.props.currentlyPlaying === [] || this.props.currentlyPlaying.datum === undefined) {
-  //     console.log(this.props.currentlyPlaying)
-  //   } else {
-  //     nowPlaying[0].innerHTML = (
-  //       <div>
-  //         <p className="track">{this.props.currentlyPlaying.song} </p>
-  //         <p className="artist">{this.props.currentlyPlaying.artist}</p>
-  //       </div>
-  //     )
-  //     debugger
-  //   }
-  //   console.log(nowPlaying);
-  //   return nowPlaying
-  // }
 
   playPauseTrack = () => {
     if (this.props.playPause) {
@@ -112,17 +91,29 @@ class Footer extends Component {
           <Player />
         </div>
 
-        <div className="audio-controls">
-          <p onClick={this.playPauseTrack}>{this.props.playPause ? <Pause /> : <Play />}</p>
-          <p onClick={this.fastForwardTrack}><FastForward /></p>
-        </div>
-
-        <div className="volume-controls">
-          <Volume />
-          <div class="slidecontainer">
-            <input type="range" min="1" max="10" value={this.state.volume} class="slider" id="myRange" onInput={this.handleInput} />
+        {this.props.DJ ?
+          <div className="audio-controls">
+            <p onClick={this.playPauseTrack}>{this.props.playPause ? <Pause /> : <Play />}</p>
+            <p onClick={this.fastForwardTrack}><FastForward /></p>
           </div>
-        </div>
+        : null}
+
+        {this.props.DJ ?
+          <div className="volume-controls">
+            <Volume />
+            <div class="slidecontainer">
+              <input type="range" min="1" max="10" value={this.state.volume} class="slider" id="myRange" onInput={this.handleInput} />
+            </div>
+          </div>
+        : null}
+
+        {this.props.DJ === false ?
+          <div className="copyright">
+            <p><Logo /></p>
+            <p>juked.</p>
+            <p>© Brooke Scarlett Yalof</p>
+          </div>
+          : null}
 
 
       </div>

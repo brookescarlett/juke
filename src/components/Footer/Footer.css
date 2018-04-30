@@ -104,3 +104,24 @@
     border-radius: 100px;
     cursor: pointer;
 }
+
+.copyright {
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  align-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.copyright p {
+  font-size: 8px;
+  color: rgba(255, 255, 255, .6);
+  padding: 0px 5px;
+  padding-top: 5px;
+}
+
+.copyright p:first-child {
+  transform: scale(.7);
+  padding-right: 0px
+}
