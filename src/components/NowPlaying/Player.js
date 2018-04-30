@@ -30,9 +30,10 @@ class Player extends Component {
   setBackground = () => {
     let bgImg = document.getElementById('bg-img')
     bgImg.style.backgroundImage = `url(${this.state.currentlyPlaying.datum.album.images[0].url})`
-    // debugger
-    // main[0].style.backgroundImage = "url(this.state.currentlyPlaying.datum.album.images[1].url)"
-    // main[0].style.opacity = 0.5
+  }
+
+  handleClick = () => {
+
   }
 
   renderCurrentlyPlaying = () => {

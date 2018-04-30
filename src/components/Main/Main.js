@@ -9,6 +9,7 @@ import Playlist from '../Playlist/Playlist'
 import Userlist from '../UserList/Userlist'
 import NowPlaying from '../NowPlaying/NowPlaying'
 import Player from '../NowPlaying/Player'
+import SendText from '../SendText/SendText'
 import Footer from '../Footer/Footer'
 
 class Main extends Component {
@@ -36,6 +37,7 @@ class Main extends Component {
                 <Userlist store={this.props.store} />
                 <Player store={this.props.store} />
                 <NowPlaying store={this.props.store} />
+                <SendText store={this.props.store} />
               </div>
             </div>
             <Footer store={this.props.store}/>
