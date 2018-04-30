@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import * as firebase from 'firebase'
 
 export let AddSong = obj => {
   return {

@@ -5,11 +5,7 @@ import { SetCurrentSong } from '../../actions/actions.js'
 import * as firebase from 'firebase'
 
 class Player extends Component {
-
-  constructor(props){
-    super(props)
-  }
-
+  
   componentDidMount = () => {
     setInterval(this.getDJsTracks, 2000)
   }

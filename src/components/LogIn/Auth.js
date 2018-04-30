@@ -46,7 +46,8 @@ class Auth extends Component {
   state = {
     name: "",
     chatroom: "",
-    dj: false
+    dj: false,
+    disabled: true
   }
 
   handleChange = (e) => {
@@ -103,14 +104,14 @@ class Auth extends Component {
     .then ( res => res.json())
     .then ( json => {
       this.props.SetPlaylistId(json.id)
-      this.openInNewTab(json.id)
+      // this.openInNewTab(json.id)
     })
   }
 
-  openInNewTab = (playlistid) => {
-    var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
-    win.focus()
-  }
+  // openInNewTab = (playlistid) => {
+  //   var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
+  //   win.focus()
+  // }
 
   render(){
     return(
@@ -125,8 +126,9 @@ class Auth extends Component {
                 </div>
 
                 <div className="auth-buttons">
-                  <button onClick={this.handleJoin} className="auth-button" id="join">JOIN</button>
-                  <button onClick={this.handleCreate} className="auth-button" id="create">CREATE</button>
+                  <button onClick={this.handleJoin} className="auth-button" id="join" disabled={!this.state.name || !this.state.chatroom}>JOIN</button>
+
+                  <button onClick={this.handleCreate} className="auth-button" id="create" disabled={!this.state.name || !this.state.chatroom}>CREATE</button>
                 </div>
             </div>
         </div>

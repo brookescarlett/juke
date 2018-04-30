@@ -16,10 +16,6 @@ import SongItem from './SongItem'
 
 class Playlist extends Component {
 
-  constructor(){
-    super()
-  }
-
   componentDidMount = () => {
     firebase.database().ref().child(`${this.props.chatroom}`).child('songs').orderByKey().on('child_added', snap => {
       this.props.AddSong(snap.val())

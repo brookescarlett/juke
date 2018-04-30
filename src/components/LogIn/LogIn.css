@@ -101,6 +101,7 @@ div.center {
 
 .input-field::placeholder {
 	font-family: 'Poppins';
+	color: rgba(30, 29, 70, 0.8)
 }
 
 .auth-buttons {
@@ -109,6 +110,10 @@ div.center {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+.auth-button:disabled {
+	background: rgba(30, 29, 70, 0.5)
 }
 
 .auth-button {
@@ -120,20 +125,13 @@ div.center {
 	font-weight: bolder;
 	letter-spacing: 2px;
 	font-size: 1rem;
+	background-color: rgba(30, 29, 70, 1)
 }
 
 .form-box {
 	padding: 40px;
 	border-radius: 10px;
 	background-color: rgba(255, 255, 255, .3);
-}
-
-#join {
-	background-color: navy;
-}
-
-#create {
-	background-color: navy;
 }
 
 .auth-background {

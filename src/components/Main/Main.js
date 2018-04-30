@@ -2,7 +2,6 @@ import './Main.css'
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
 
 import NavBar from '../Nav/NavBar'
 import Filter from '../Filter/Filter'

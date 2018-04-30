@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import { ToggleModal } from '../../actions/actions.js'
 
 import DisplayFilterResults from './DisplayFilterResults'
-import Modal from 'react-modal'
+
 
 class Filter extends Component {
 

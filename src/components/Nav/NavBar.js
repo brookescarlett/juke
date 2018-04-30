@@ -61,7 +61,7 @@ class NavBar extends Component {
         <div className="nav-bar" id="right-side-nav">
           <div className="groupme">
             <p>{this.renderGreeting()}</p>
-            <Gear onClick={this.handleClick}/>
+            <p className="gear" onClick={this.handleClick}><Gear/></p>
           </div>
         </div>
 
