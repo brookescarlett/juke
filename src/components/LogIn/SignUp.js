@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux'
 class SignUp extends Component {
 
   render(){
+    console.log('here')
     return(
       <div className="animation">
         <div className="center">

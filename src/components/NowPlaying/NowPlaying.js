@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { SetCurrentSong } from '../../actions/actions.js'
+import { SetPlayPauseState } from '../../actions/actions.js'
 import * as firebase from 'firebase'
 
 class Player extends Component {
-  
+
   componentDidMount = () => {
     setInterval(this.getDJsTracks, 2000)
   }
@@ -21,6 +22,10 @@ class Player extends Component {
       })
       .then(res => res.json())
       .then(json => {
+
+        this.props.SetPlayPauseState(json.is_playing)
+        console.log(this.props.playPause)
+
         const chatroom = this.props.chatroom
         let wasPlaying = ""
         let isPlaying = ""
@@ -65,12 +70,12 @@ class Player extends Component {
 }
 
 function mapStateToProps(state) {
-  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, DJ :state.DJ, chatroom:state.chatroom}
+  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, DJ :state.DJ, chatroom:state.chatroom, playPause: state.playPause}
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    SetCurrentSong
+    SetCurrentSong, SetPlayPauseState
   }, dispatch)
 }
 

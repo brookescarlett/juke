@@ -4,6 +4,7 @@ import { SetDJ } from '../../actions/actions.js'
 import { SetChatroom } from '../../actions/actions.js'
 import { SetName } from '../../actions/actions.js'
 import { SetPlaylistId } from '../../actions/actions.js'
+import {fetchUser} from '../../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as firebase from 'firebase'
@@ -50,6 +51,10 @@ class Auth extends Component {
     disabled: true
   }
 
+  componentDidMount = () => {
+    this.props.fetchUser()
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -91,7 +96,7 @@ class Auth extends Component {
   }
 
   createPlaylist = (playlistName) => {
-    console.log('here')
+
     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
       method: 'POST',
       headers: {
@@ -104,14 +109,14 @@ class Auth extends Component {
     .then ( res => res.json())
     .then ( json => {
       this.props.SetPlaylistId(json.id)
-      // this.openInNewTab(json.id)
+      this.openInNewTab(json.id)
     })
   }
 
-  // openInNewTab = (playlistid) => {
-  //   var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
-  //   win.focus()
-  // }
+  openInNewTab = (playlistid) => {
+    var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
+    win.focus()
+  }
 
   render(){
     return(
@@ -146,7 +151,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    SetDJ, SetChatroom, SetPlaylistId, SetName
+    SetDJ, SetChatroom, SetPlaylistId, SetName, fetchUser
   }, dispatch)
 }
 

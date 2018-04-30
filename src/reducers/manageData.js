@@ -9,7 +9,8 @@ export default function manageData(state = {
   chatroom: "",
   query: "",
   name: "",
-  displayModal: false
+  displayModal: false,
+  playPause: false
 
 }, action){
 
@@ -100,6 +101,12 @@ export default function manageData(state = {
         ...state,
         displayModal: action.payload
       }
+
+    case 'SET_PLAY_PAUSE':
+      return{
+      ...state,
+      playPause: action.payload
+    }
 
     default:
       return state

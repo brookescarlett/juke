@@ -70,6 +70,13 @@ export let ToggleModal = (bool) => {
   }
 }
 
+export let SetPlayPauseState = (bool) => {
+  return {
+    type: "SET_PLAY_PAUSE",
+    payload: bool
+  }
+}
+
 
 // export function AddSongsToPlaylist(addToQueue) {
 //   // debugger

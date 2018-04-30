@@ -90,7 +90,7 @@ class Filter extends Component {
   render(){
     return(
       <div>
-        <input type="text" onChange={this.handleChange} placeholder="Search" className="filter-bar" style={{"background-color": this.styleProps()}}></input>
+        <input type="text" onChange={this.handleChange} placeholder="Search" className="filter-bar" style={{"backgroundColor": this.styleProps()}}></input>
         {this.props.displayModal === true ?
         <div>
           <div className="modal-overlay-div" onClick={this.onOverlayClick} />

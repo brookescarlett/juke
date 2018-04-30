@@ -1,7 +1,7 @@
 import './App.css'
 
 import React, { Component } from 'react'
-import {BrowserRouter as Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import SignUp from './components/LogIn/SignUp'
 import Auth from './components/LogIn/Auth'
@@ -10,6 +10,8 @@ import Main from './components/Main/Main'
 export default class App extends Component {
 
   render() {
+
+    console.log('here');
     return (
       <div className="App">
         <div>
