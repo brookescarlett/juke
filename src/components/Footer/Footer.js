@@ -101,8 +101,8 @@ class Footer extends Component {
         {this.props.DJ ?
           <div className="volume-controls">
             <Volume />
-            <div class="slidecontainer">
-              <input type="range" min="1" max="10" value={this.state.volume} class="slider" id="myRange" onInput={this.handleInput} />
+            <div className="slidecontainer">
+              <input type="range" min="1" max="10" value={this.state.volume} className="slider" id="myRange" onInput={this.handleInput} />
             </div>
           </div>
         : null}

@@ -24,6 +24,7 @@ class Main extends Component {
       <div>
         {this.props.chatroom !== "" ? (
           <div className="main-container">
+            <div id="bg-img"></div>
             <div className='animated fadeIn'>
             <NavBar store={this.props.store}/>
             <Filter store={this.props.store}/>

@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import * as firebase from 'firebase'
 
+import AudioLoader from '../../svgs/AudioLoader'
+
 class Player extends Component {
 
   state = {
@@ -22,7 +24,15 @@ class Player extends Component {
 
     this.setState({
       currentlyPlaying: currentlyPlaying
-    })
+    }, () => this.state.currentlyPlaying !== "" ? this.setBackground() : null)
+  }
+
+  setBackground = () => {
+    let bgImg = document.getElementById('bg-img')
+    bgImg.style.backgroundImage = `url(${this.state.currentlyPlaying.datum.album.images[0].url})`
+    // debugger
+    // main[0].style.backgroundImage = "url(this.state.currentlyPlaying.datum.album.images[1].url)"
+    // main[0].style.opacity = 0.5
   }
 
   renderCurrentlyPlaying = () => {
@@ -33,6 +43,7 @@ class Player extends Component {
           <img src={this.state.currentlyPlaying.datum.album.images[1].url}/>
           <p>{this.state.currentlyPlaying.song}</p>
           <p>{this.state.currentlyPlaying.artist}</p>
+          {/* <AudioLoader /> */}
         </div>
       )
     }

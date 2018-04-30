@@ -76,7 +76,7 @@ class Player extends Component {
   }
 
   getDJRecs = () => {
-    if (this.props.DJ && this.props.songs.length === 0 && this.state.getSpotifyRecs) {
+    if (this.props.DJ && this.props.songs.length === 1 && this.state.getSpotifyRecs) {
       fetch(`https://api.spotify.com/v1/recommendations?seed_tracks=${this.getSongsForRecs()}`, {
         headers: {
           'Content-type': 'application/json',

@@ -11,18 +11,16 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-content: center;
   justify-content: space-between;
 }
 
 .now-playing {
-  width: 200px;
   display: flex;
   flex-direction: row;
-  height: 100%;
-  margin-left: 5px;
-  margin-bottom: 12.5px;
   align-items: center;
   align-content: center;
+  flex-wrap: wrap
 }
 
 .now-playing .currently-playing {
@@ -35,9 +33,14 @@
 }
 
 .now-playing p {
-  font-size: 10px;
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, .6) !important;
-  padding: 0px 5px;
+  padding: 5px 10px;
+  margin-bottom: 6px;
+}
+
+.now-playing p:nth-child(3) {
+  display: none;
 }
 
 .audio-controls {

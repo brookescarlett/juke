@@ -1,5 +1,6 @@
 import './NavBar.css'
 
+import {withRouter} from 'react-router'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -78,4 +79,4 @@ function mapDispatchToProps(dispatch) {
   return {actions: bindActionCreators(actions, dispatch)}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
