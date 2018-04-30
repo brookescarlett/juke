@@ -12,6 +12,7 @@ class SignUp extends Component {
     console.log('here')
     return(
       <div className="animation">
+        <div className='animated fadeIn'>
         <div className="center">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
           	 width="48px" height="48px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
@@ -28,6 +29,7 @@ class SignUp extends Component {
           <div className="logo">juked.</div>
           <a href="http://localhost:8888/login"><button onClick={this.handleSubmit} className="sign-up-button">LOG IN</button></a>
         </div>
+      </div>
       </div>
     )
   }

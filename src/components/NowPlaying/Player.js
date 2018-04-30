@@ -31,7 +31,7 @@ class Player extends Component {
       return(
         <div className="currently-playing">
           <img src={this.state.currentlyPlaying.datum.album.images[1].url}/>
-          <p><strong>{this.state.currentlyPlaying.song}</strong></p>
+          <p>{this.state.currentlyPlaying.song}</p>
           <p>{this.state.currentlyPlaying.artist}</p>
         </div>
       )

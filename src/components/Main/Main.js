@@ -24,6 +24,7 @@ class Main extends Component {
       <div>
         {this.props.chatroom !== "" ? (
           <div className="main-container">
+            <div className='animated fadeIn'>
             <NavBar store={this.props.store}/>
             <Filter store={this.props.store}/>
             <div className="flex-row">
@@ -37,6 +38,7 @@ class Main extends Component {
               </div>
             </div>
             <Footer store={this.props.store}/>
+          </div>
           </div>
         ) : null}
       </div>

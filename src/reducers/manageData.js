@@ -10,7 +10,8 @@ export default function manageData(state = {
   query: "",
   name: "",
   displayModal: false,
-  playPause: false
+  playPause: false,
+  volume: 0
 
 }, action){
 
@@ -106,6 +107,12 @@ export default function manageData(state = {
       return{
       ...state,
       playPause: action.payload
+    }
+
+    case 'SET_VOLUME':
+      return{
+      ...state,
+      volume: action.payload
     }
 
     default:

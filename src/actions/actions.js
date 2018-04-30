@@ -77,6 +77,13 @@ export let SetPlayPauseState = (bool) => {
   }
 }
 
+export let SetVolume = (num) => {
+  return {
+    type: "SET_VOLUME",
+    payload: num
+  }
+}
+
 
 // export function AddSongsToPlaylist(addToQueue) {
 //   // debugger

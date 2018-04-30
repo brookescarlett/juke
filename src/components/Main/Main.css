@@ -16,6 +16,10 @@ h3, p {
   margin: 0px 2.5%;
 }
 
+.fadeIn{
+  animation-duration: 3.5s;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;

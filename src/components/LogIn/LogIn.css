@@ -21,6 +21,10 @@
 	animation-play-state: running;
 }
 
+.fadeIn{
+	animation-duration: 1.5s;
+}
+
 
 @keyframes bg_animation {
 	0% {
