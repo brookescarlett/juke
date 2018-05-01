@@ -104,7 +104,7 @@ class Player extends Component {
       currentlyPlaying: false,
       beenPlayed: false,
       spotifyID: song.id,
-      user: this.props.name,
+      user: 'juked',
       URI: song.uri,
       datum: song
     })

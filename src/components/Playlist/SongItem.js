@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 
 import ThumbsUp from '../../svgs/ThumbsUp'
 import ThumbsDown from '../../svgs/ThumbsDown'
+import AudioLoader from '../../svgs/AudioLoader'
+import AudioBars from '../../svgs/AudioBars'
 
 class SongItem extends Component {
 
@@ -61,17 +63,21 @@ class SongItem extends Component {
   }
 
   render(){
+    // debugger
     return(
       <div className="song">
-        <div className="song-content">
-          <p>@{this.props.datum.user}</p>
-          <p>{this.props.datum.song}</p>
+        <div className="main-song-content">
+          <div className="song-content">
+            <p>@{this.props.datum.user}</p>
+            <p>{this.props.datum.song}</p>
+          </div>
+          {this.props.songs[0].song === this.props.datum.song && this.props.playPause ? <div className="loader"><AudioBars /></div> : null}
         </div>
         <div className="bottom-row">
           <div><p>{this.props.datum.artist}</p></div>
           <div className="votes">
             <p onClick={this.handleUpVote}><ThumbsUp /><span>{this.props.datum.upVote}</span></p>
-            <p onClick={this.handleDownVote}><ThumbsDown /><span>{this.props.datum.downVote}</span></p>
+            <p onClick={this.props.songs[0].song === this.props.datum.song ? null : this.handleDownVote}><ThumbsDown /><span>{this.props.datum.downVote}</span></p>
           </div>
         </div>
       </div>
@@ -80,7 +86,7 @@ class SongItem extends Component {
 }
 
 function mapStateToProps(state) {
-  return {chatroom: state.chatroom}
+  return {chatroom: state.chatroom, songs: state.songs, playPause: state.playPause}
 }
 
 export default connect(mapStateToProps)(SongItem)

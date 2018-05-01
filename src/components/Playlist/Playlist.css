@@ -29,8 +29,22 @@
   -webkit-margin-end: 0px;
 }
 
+.main-song-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .song-content {
   margin: 0px;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  transform: scale(0.3);
+  align-content: flex-start;
+  text-align: right;
 }
 
 .song-content p:first-child {

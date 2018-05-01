@@ -19,6 +19,8 @@ class Userlist extends Component {
         this.setState({
           dj: snap.val()
         })
+      } else if(snap.val() === 'juked') {
+        // continue
       } else {
         this.setState({
           usersArray: [...this.state.usersArray, snap.val()]

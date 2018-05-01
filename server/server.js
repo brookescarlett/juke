@@ -7,7 +7,26 @@ var secrets = require('../secrets')
 
 var client_id = secrets.CLIENT_ID
 var client_secret = secrets.CLIENT_SECRET
+var accountSid = secrets.accountSid
+var authToken = secrets.authToken
 var redirect_uri = 'http://localhost:8888/callback'
+
+
+// const ngrok = require('ngrok')
+// var client = require('twilio')(accountSid, authToken)
+// client.messages.create({
+//   to: '+19175362656',
+//   from: '+12013747016',
+//   body: 'is this working?'
+// })
+// .then((message) => console.log(message.sid))
+//
+// client.messages('testing123')
+// .update({body:''})
+// .then(message => process.stdout.write(message.body))
+
+
+
 
 /**
  * Generates a random string containing numbers and letters
