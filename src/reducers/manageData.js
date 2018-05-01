@@ -11,7 +11,7 @@ export default function manageData(state = {
   name: "",
   displayModal: false,
   playPause: false,
-  volume: 0,
+  volume: 5,
   seedTracks: []
 
 }, action){

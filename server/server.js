@@ -4,6 +4,7 @@ var request = require('request')
 var querystring = require('querystring')
 var cookieParser = require('cookie-parser')
 var secrets = require('../secrets')
+// var host = window.location.origin.replace(/^http/, 'ws')
 
 var client_id = secrets.CLIENT_ID
 var client_secret = secrets.CLIENT_SECRET
