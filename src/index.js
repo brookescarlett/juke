@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import Rebase from 're-base'
 import registerServiceWorker from './registerServiceWorker'
 
 import { Provider } from 'react-redux'
@@ -29,7 +28,6 @@ var config = {
 
 var fb = firebase.initializeApp(config)
 var db = firebase.database(fb)
-export let base = Rebase.createClass(db)
 
 const store = createStore(manageData, applyMiddleware(thunk))
 

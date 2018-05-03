@@ -1,4 +1,3 @@
-require('dotenv').config({path: "../env"})
 var express = require('express')
 var request = require('request')
 var querystring = require('querystring')
@@ -17,7 +16,6 @@ var redirect_uri = 'http://localhost:8888/callback'
 // var client = require('twilio')(accountSid, authToken)
 // client.messages.create({
 //   to: '+19175362656',
-//   from: '+12013747016',
 //   body: 'is this working?'
 // })
 // .then((message) => console.log(message.sid))

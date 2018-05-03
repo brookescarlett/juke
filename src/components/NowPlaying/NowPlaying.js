@@ -28,12 +28,17 @@ class Player extends Component {
           'Accept': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
+
       })
+
       .then(res => res.json())
       .then(json => {
 
+        // debugger
+          console.log(json);
+
         this.props.SetPlayPauseState(json.is_playing)
-        console.log(json.device.volume_percent)
+        // console.log(json.device.volume_percent)
         // this.props.SetVolume(json.device.volume_percent)
 
         const chatroom = this.props.chatroom
@@ -65,7 +70,7 @@ class Player extends Component {
         }
 
         this.props.SetCurrentSong(isPlaying)
-        this.props.SetVolume(json.device.volume_percent)
+        // this.props.SetVolume(json.device.volume_percent)
       })
     }
   }
@@ -121,6 +126,7 @@ class Player extends Component {
       })
       .then(res => res.json())
       .then(json => {
+        console.log(json);
         console.log(json.tracks[0])
         this.fetchFunction(json.tracks[0])
       })

@@ -102,7 +102,7 @@ class Footer extends Component {
           <div className="volume-controls">
             <Volume />
             <div className="slidecontainer">
-              <input type="range" min="1" max="10" value={this.state.volume} className="slider" id="myRange" onInput={this.handleInput} />
+              <input type="range" min="1" max="10" value={this.state.volume} className="slider" id="myRange" onChange={this.handleInput} />
             </div>
           </div>
         : null}
