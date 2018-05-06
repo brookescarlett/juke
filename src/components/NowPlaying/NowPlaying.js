@@ -18,6 +18,8 @@ class Player extends Component {
 
   componentWillReceiveProps = () => {
     this.props.songs.length >= 1 ? this.setState({getSpotifyRecs: true}, () => this.getDJRecs()) : null
+
+    this.getSongsForRecs()
   }
 
   getDJsTracks = () => {
@@ -74,40 +76,7 @@ class Player extends Component {
       })
     }
   }
-      //   this.props.SetPlayPauseState(json.is_playing)
-      //
-      //
-      //   const chatroom = this.props.chatroom
-      //   let wasPlaying = ""
-      //   let isPlaying = ""
-      //   var updates = {}
-      //
-      //   var ref = firebase.database().ref().child(`${this.props.chatroom}`).child('songs')
-      //   ref.orderByKey().limitToFirst(1).on("child_added", function(snapshot) {
-      //     if (snapshot.val().currentlyPlaying === true) {
-      //       wasPlaying = snapshot.val()
-      //     }
-      //   })
-      //
-      //   var ref = firebase.database().ref().child(`${this.props.chatroom}`).child('songs')
-      //   ref.orderByKey().on("child_added", function(snapshot) {
-      //     if (snapshot.val().song === json.item.name) {
-      //       isPlaying = snapshot.val()
-      //       updates[`/${chatroom}/songs/` + isPlaying.id + '/currentlyPlaying'] = true
-      //       var updateVotes = firebase.database().ref().update(updates)
-      //     }
-      //   })
-      //
-      //   if (wasPlaying !== "" && isPlaying !== "") {
-      //     if (wasPlaying.id !== isPlaying.id) {
-      //       updates[`/${chatroom}/songs/` + wasPlaying.id] = null
-      //       var updateVotes = firebase.database().ref().update(updates)
-      //     }
-      //   }
-      //
-      //   this.props.SetCurrentSong(isPlaying)
-      //
-      // })
+
 
   getSongsForRecs = () => {
     let seedTracks = this.props.seedTracks.length > 5 ? this.props.seedTracks.slice(-5) : this.props.seedTracks

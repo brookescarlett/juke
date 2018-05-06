@@ -6,13 +6,18 @@ import { AddSong } from '../../actions/actions.js'
 import { AddSongForRecs } from '../../actions/actions.js'
 import { UpdateSong } from '../../actions/actions.js'
 import { RemoveSong } from '../../actions/actions.js'
+import { AddSongSuggestions } from '../../actions/actions.js'
+import { ToggleSuggestionsModal } from '../../actions/actions.js'
+import { RemoveFromSuggestions } from '../../actions/actions.js'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 
 import * as firebase from 'firebase'
+import UUID from 'uuid'
 
 import SongItem from './SongItem'
+import SongSuggestion from './SongSuggestion'
 
 
 class Playlist extends Component {
@@ -32,6 +37,19 @@ class Playlist extends Component {
       this.props.RemoveSong(snap.val())
       this.removeSongFromPlaylist(snap.val())
     })
+
+    firebase.database().ref().child(`${this.props.chatroom}`).child('requests').orderByKey().on('child_added', snap => {
+      console.log(snap.val());
+      this.props.AddSongSuggestions(snap.val())
+      snap.val() !== [] ? this.props.ToggleSuggestionsModal(true) : null
+    })
+
+    firebase.database().ref().child(`${this.props.chatroom}`).child('requests').orderByKey().on('child_removed', snap => {
+      this.props.RemoveFromSuggestions(snap.val().id)
+
+    })
+
+
 
   }
 
@@ -74,12 +92,46 @@ class Playlist extends Component {
     }) : null
   }
 
+  renderSuggestedStore = () => {
+    return this.props.suggestedSongs !== [] ? this.props.suggestedSongs.map(song => {
+      return <SongSuggestion key={ UUID() } suggestion={song}/>
+    }) : null
+  }
+
+  onClose() {
+    this.props.ToggleSuggestionsModal(false)
+  }
+
+  onOverlayClick = () => {
+    this.props.ToggleSuggestionsModal(false)
+  }
+
+  onDialogClick = (event) => {
+    event.stopPropagation()
+  }
+
+  styleProps = () => {
+    return this.props.displaySuggestionsModal ? 'white' : 'rgba(255, 255, 255, .3)'
+  }
+
   render(){
     return(
-      <div className="playlist">
-        <h3>Playlist</h3>
-        <div className="song-container">
-          {this.renderStore()}
+      <div>
+        {this.props.displaySuggestionsModal ?
+          <div className="suggestions-overlay-div" onClick={this.onOverlayClick}>
+            <div className="suggestions-content-div" onClick={this.onOverlayClick}>
+              <div className="suggestions-dialog-div"  onClick={this.onDialogClick}>
+                <div>{this.props.DJ ? this.renderSuggestedStore() : null}</div>
+              </div>
+            </div>
+          </div> : null
+        }
+
+        <div className="playlist">
+          <h3>Playlist</h3>
+          <div className="song-container">
+            {this.renderStore()}
+          </div>
         </div>
       </div>
     )
@@ -89,12 +141,12 @@ class Playlist extends Component {
 }
 
 const mapStateToProps = state => {
-  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom, seedTracks:state.seedTracks}
+  return {songs: state.songs, currentUser: state.currentUser, playlistID: state.playlistID, chatroom: state.chatroom, seedTracks:state.seedTracks, suggestedSongs: state.suggestedSongs, DJ: state.DJ, displaySuggestionsModal:state.displaySuggestionsModal }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    AddSong, UpdateSong, RemoveSong, AddSongForRecs
+    AddSong, UpdateSong, RemoveSong, AddSongForRecs, AddSongSuggestions, RemoveFromSuggestions, ToggleSuggestionsModal
   }, dispatch)
 }
 

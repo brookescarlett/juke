@@ -91,33 +91,26 @@ export let AddSongForRecs = (uri) => {
   }
 }
 
+export let AddSongSuggestions = (song) => {
+  return {
+    type: "ADD_SONG_SUGGESTION",
+    payload: song
+  }
+}
 
-// export function AddSongsToPlaylist(addToQueue) {
-//   // debugger
-//   let uris = addToQueue.map( song => song.URI)
-//   console.log(uris);
-//   return (dispatch) => {
-//     dispatch({type: 'START_MAKING_PLAYLIST'})
-//     fetch(`https://api.spotify.com/v1/users/${this.currentUser.id}/playlists/${this.playlistID}/tracks`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-type': 'application/json',
-//         'Accept': 'application/json',
-//         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-//       },
-//       body: JSON.stringify({"uris": uris})
-//     })
-//     .then(res => res.json())
-//     .then(json => {
-//       addToQueue.forEach(song => {
-//         var updates = {}
-//         updates['/songs/' + song.id + '/inPlaylist'] = true
-//         var updateStatus = firebase.database().ref().update(updates)
-//         dispatch({type: 'UPDATE_SONG', payload: song})
-//       })
-//     })
-//   }
-// }
+export let ToggleSuggestionsModal = (bool) => {
+  return {
+    type: 'TOGGLE_SUGGESTIONS_MODAL',
+    payload: bool
+  }
+}
+
+export let RemoveFromSuggestions = (song) => {
+  return {
+    type: 'REMOVE_FROM_SUGGESTIONS', 
+    payload: song
+  }
+}
 
 export function fetchUser() {
   return (dispatch) => {

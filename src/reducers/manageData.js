@@ -12,7 +12,9 @@ export default function manageData(state = {
   displayModal: false,
   playPause: false,
   volume: 5,
-  seedTracks: []
+  seedTracks: [],
+  suggestedSongs: [],
+  displaySuggestionsModal: false
 
 }, action){
 
@@ -121,6 +123,28 @@ export default function manageData(state = {
       ...state,
       seedTracks: [...state.seedTracks, action.payload]
     }
+
+    case 'ADD_SONG_SUGGESTION':
+      return{
+      ...state,
+      suggestedSongs: [...state.suggestedSongs, action.payload]
+    }
+
+    case 'TOGGLE_SUGGESTIONS_MODAL':
+    debugger
+      return {
+        ...state,
+        displaySuggestionsModal: action.payload
+      }
+
+    case 'REMOVE_FROM_SUGGESTIONS':
+      let remove = state.suggestedSongs.filter(song => action.payload === song.id)
+      let removeIndex = state.suggestedSongs.indexOf(remove[0])
+      return {
+        ...state,
+        suggestedSongs: [...state.suggestedSongs.slice(0, removeIndex),
+                ...state.suggestedSongs.slice(removeIndex + 1)]
+      }
 
 
     default:

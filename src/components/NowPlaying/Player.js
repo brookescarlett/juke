@@ -32,9 +32,6 @@ class Player extends Component {
     bgImg.style.backgroundImage = `url(${this.state.currentlyPlaying.datum.album.images[0].url})`
   }
 
-  handleClick = () => {
-
-  }
 
   renderCurrentlyPlaying = () => {
     if (this.state.currentlyPlaying === "") {

@@ -17,7 +17,6 @@ class SignUp extends Component {
         <div className="center">
           <BigLogo />
           <div className="logo">juked.</div>
-          {/* <p className="description">build better setlists together</p> */}
           <a href="http://localhost:8888/login"><button onClick={this.handleSubmit} className="sign-up-button">LOG IN</button></a>
         </div>
       </div>
