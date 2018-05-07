@@ -129,10 +129,10 @@
   flex-direction: row;
 }
 
-#good{
+#true{
   margin-right: 10px;
 }
 
-#bad{
+#false{
   margin-right: 10px;
 }

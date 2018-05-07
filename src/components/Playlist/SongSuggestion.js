@@ -30,9 +30,9 @@ class SongSuggestion extends Component {
      <div className="songSuggestion">
         <div>@{this.props.suggestion.user} requested {this.props.suggestion.song}</div>
         <div className="thumbs">
-          <div onClick={this.handleClick} id='good' style={{color: 'green'
+          <div onClick={this.handleClick} id='true' style={{color: 'green'
           }}><ThumbsUp /></div>
-          <div onClick={this.handleClick} id='bad' style={{color: 'red', }}><ThumbsDown /></div>
+          <div onClick={this.handleClick} id='false' style={{color: 'red'}}><ThumbsDown /></div>
         </div>
       </div>
 

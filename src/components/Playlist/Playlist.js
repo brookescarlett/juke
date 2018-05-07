@@ -113,8 +113,8 @@ class Playlist extends Component {
       <div>
         {this.props.displaySuggestionsModal ?
           <div className="suggestions-overlay-div" onClick={this.onOverlayClick}>
-            <div className="suggestions-content-div" onClick={this.onOverlayClick}>
-              <div className="suggestions-dialog-div"  onClick={this.onDialogClick}>
+            <div className="suggestions-content-div">
+              <div className="suggestions-dialog-div">
                 <div className="animated fadeInUp">{this.props.DJ ? this.renderSuggestedStore() : null}</div>
               </div>
             </div>
