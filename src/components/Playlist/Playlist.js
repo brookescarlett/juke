@@ -87,7 +87,7 @@ class Playlist extends Component {
   }
 
   renderSuggestedStore = () => {
-    return this.props.suggestedSongs !== [] ? this.props.suggestedSongs.map(song => {
+    return this.props.suggestedSongs !== [] && this.props.DJ === true ? this.props.suggestedSongs.map(song => {
       return <SongSuggestion key={ UUID() } suggestion={song}/>
     }) : null
   }
@@ -111,7 +111,7 @@ class Playlist extends Component {
   render(){
     return(
       <div>
-        {this.props.displaySuggestionsModal ?
+        {this.props.displaySuggestionsModal && this.props.DJ ?
           <div className="suggestions-overlay-div" onClick={this.onOverlayClick}>
             <div className="suggestions-content-div">
               <div className="suggestions-dialog-div">
