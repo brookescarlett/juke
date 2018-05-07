@@ -44,12 +44,6 @@ class Playlist extends Component {
       snap.val() !== [] ? this.props.ToggleSuggestionsModal(true) : null
     })
 
-    firebase.database().ref().child(`${this.props.chatroom}`).child('requests').orderByKey().on('child_removed', snap => {
-      this.props.RemoveFromSuggestions(snap.val().id)
-
-    })
-
-
 
   }
 
@@ -121,7 +115,7 @@ class Playlist extends Component {
           <div className="suggestions-overlay-div" onClick={this.onOverlayClick}>
             <div className="suggestions-content-div" onClick={this.onOverlayClick}>
               <div className="suggestions-dialog-div"  onClick={this.onDialogClick}>
-                <div>{this.props.DJ ? this.renderSuggestedStore() : null}</div>
+                <div className="animated fadeInUp">{this.props.DJ ? this.renderSuggestedStore() : null}</div>
               </div>
             </div>
           </div> : null

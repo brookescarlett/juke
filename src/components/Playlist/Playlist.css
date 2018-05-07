@@ -80,13 +80,13 @@
     height: 100%;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, .65);
+    background-color: rgba(0, 0, 0, .3);
 }
 
 .suggestions-content-div {
     position: fixed;
     width: 100%;
-    height: 100px;
+    height: 5vh;
     bottom: 0;
     z-index: 9999;
     overflow: auto;
@@ -113,13 +113,26 @@
     box-sizing: border-box;
     max-width: auto;
     cursor: default;
-    color: rgba(63, 63, 63, 0.9)
+    color: rgba(63, 63, 63, 0.9);
+    font-size: 12px
 }
 
 .songSuggestion{
   margin: 10px 15px;
-  /* width: 100%; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.thumbs {
+  display: flex;
+  flex-direction: row;
+}
+
+#good{
+  margin-right: 10px;
+}
+
+#bad{
+  margin-right: 10px;
 }

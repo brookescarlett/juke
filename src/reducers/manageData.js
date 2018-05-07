@@ -131,7 +131,6 @@ export default function manageData(state = {
     }
 
     case 'TOGGLE_SUGGESTIONS_MODAL':
-    debugger
       return {
         ...state,
         displaySuggestionsModal: action.payload

@@ -6,18 +6,22 @@ import * as firebase from 'firebase'
 import {ToggleSuggestionsModal, RemoveFromSuggestions} from '../../actions/actions.js'
 import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
-import XCircle from '../../svgs/XCircle'
+
+import ThumbsUp from '../../svgs/ThumbsUp'
+import ThumbsDown from '../../svgs/ThumbsDown'
 
 
 class SongSuggestion extends Component {
 
   handleClick = (e) => {
+    console.log(e.target.id);
     this.props.ToggleSuggestionsModal(false)
 
     var updates = {}
-    updates[`/${this.props.chatroom}/requests/` + this.props.suggestion.id ] = null
-    console.log(updates);
+    updates[`/${this.props.chatroom}/requests/` + this.props.suggestion.id + '/willBePlayed'] = e.target.id
     var updateVotes = firebase.database().ref().update(updates)
+
+    this.props.RemoveFromSuggestions(this.props.suggestion.id)
   }
 
   render(){
@@ -25,7 +29,11 @@ class SongSuggestion extends Component {
 
      <div className="songSuggestion">
         <div>@{this.props.suggestion.user} requested {this.props.suggestion.song}</div>
-        <div onClick={this.handleClick} id={this.props.suggestion.id}><XCircle /></div>
+        <div className="thumbs">
+          <div onClick={this.handleClick} id='good' style={{color: 'green'
+          }}><ThumbsUp /></div>
+          <div onClick={this.handleClick} id='bad' style={{color: 'red', }}><ThumbsDown /></div>
+        </div>
       </div>
 
 
