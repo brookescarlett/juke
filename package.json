@@ -21,7 +21,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "react-scripts start && node server.js",
     "start-dev": "nf start -p 3000",
     "dev": "concurrently \"react-scripts start\" \"node server.js\"",
     "server": "node server.js",
