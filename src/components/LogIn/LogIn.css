@@ -17,7 +17,7 @@
 	animation-timing-function: linear;
 	animation-delay: 0;
 	animation-iteration-count: forwards;
-	animation-direction: right;
+	animation-direction: alternate;
 	animation-play-state: running;
 }
 
