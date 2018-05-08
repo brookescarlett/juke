@@ -17,7 +17,7 @@ class SignUp extends Component {
         <div className="center">
           <BigLogo />
           <div className="logo">juked.</div>
-          <a href="https://juked-web.herokuapp.com/login"><button onClick={this.handleSubmit} className="sign-up-button">LOG IN</button></a>
+          <a href="http://localhost:8888/login"><button className="sign-up-button">LOG IN</button></a>
         </div>
       </div>
       </div>

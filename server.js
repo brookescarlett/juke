@@ -3,12 +3,13 @@ var request = require('request')
 var querystring = require('querystring')
 var cookieParser = require('cookie-parser')
 var secrets = require('./secrets')
+// var host = window.location.origin.replace(/^http/, 'ws')
 
 var client_id = secrets.CLIENT_ID
 var client_secret = secrets.CLIENT_SECRET
 var accountSid = secrets.accountSid
 var authToken = secrets.authToken
-var redirect_uri = 'https://juked-web.herokuapp.com/callback'
+var redirect_uri = 'http://localhost:8888/callback'
 
 /**
  * Generates a random string containing numbers and letters
@@ -27,14 +28,15 @@ var generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
+// var cors = require('cors');
 var app = express();
+// app.use(cors())
 
-
-app.use(express.static(__dirname + '/build'))
+app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.get('/login', function(req, res) {
-  console.log('hello')
+
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
