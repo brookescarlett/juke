@@ -16,8 +16,8 @@
 	animation-duration: 15s;
 	animation-timing-function: linear;
 	animation-delay: 0;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+	animation-iteration-count: forwards;
+	animation-direction: right;
 	animation-play-state: running;
 }
 
@@ -28,28 +28,28 @@
 
 @keyframes bg_animation {
 	0% {
-		background-color: #4facfe; /*blue one*/
+		background-color: #4facfe;
 	}
 
 	20% {
-		background-color: #4088f2; /*blue two*/
+		background-color: #4088f2;
 	}
 
 	40% {
-		background-color: #6146b3; /* light purple */
+		background-color: #6146b3;
 	}
 
 	60% {
-		background-color: #753a88; /* my purple */
+		background-color: #753a88;
 	}
 
 	80% {
-		background-color: #cc2b5e; /* light pink */
+		background-color: #cc2b5e;
 	}
 
 
 	100% {
-		background-color: #f77889; /* pink */
+		background-color: #f77889;
 	}
 }
 
@@ -73,7 +73,7 @@ div.center {
   font-size: 40px;
 	color: white;
 	margin-bottom: 40px;
-}
+} */
 
 /* .description {
 	margin-top: 0px;
@@ -144,7 +144,7 @@ div.center {
 }
 
 .auth-background {
-	background: linear-gradient(to -225deg, #4088f2 0%, #6146b3 100%);
+	background: linear-gradient(to right, #4088f2 0%, #6146b3 100%);
 }
 
 .big-logo {

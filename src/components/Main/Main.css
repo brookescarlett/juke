@@ -7,7 +7,7 @@ h3, p {
 .main-container {
   height: 100vh;
   font-family: 'Poppins';
-  background: linear-gradient(to -225deg, #4088f2 0%, #6146b3 100%);
+  background: linear-gradient(to right, #4088f2 0%, #6146b3 100%);
 }
 
 #bg-img {
