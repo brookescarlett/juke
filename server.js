@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser')
 var secrets = require('./secrets')
 // var host = window.location.origin.replace(/^http/, 'ws')
 
-var client_id = 'e3eedba3c2584d3db92f1c396df003bf'
-var client_secret = 'f00c61061c63407c838954aaab6d2e87'
+var client_id = secrets.CLIENT_ID
+var client_secret = secrets.CLIENT_SECRET
 var accountSid = secrets.accountSid
 var authToken = secrets.authToken
 var redirect_uri = 'https://juked-web.herokuapp.com/callback'
