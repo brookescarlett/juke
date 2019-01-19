@@ -61,22 +61,26 @@ class Auth extends Component {
 
   handleEnter = (e) => {
     e.preventDefault()
+    console.log(e.target.id)
     let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
+    let checkDJ = e.target.id === "join" ? false : true
 
+    console.log(checkDJ)
     newSongRef.set({
       name: this.state.name,
-      dj: e.target.id === "join" ? false : true
+      dj: checkDJ
     }, () => {
+      checkDJ ? this.createPlaylist(this.state.chatroom) : null
       this.props.SetName(this.state.name)
       this.props.SetChatroom(this.state.chatroom)
-      this.props.SetDJ(false)
+      this.props.SetDJ(checkDJ)
       this.props.history.push("/main")
     })
     
   }
 
   createPlaylist = (playlistName) => {
-
+    console.log('here')
     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
       method: 'POST',
       headers: {
@@ -89,6 +93,7 @@ class Auth extends Component {
     .then ( res => res.json())
     .then ( data => {
       this.props.SetPlaylistId(data.id)
+      console.log(data)
       // this.openInNewTab(json.id)
     })
   }

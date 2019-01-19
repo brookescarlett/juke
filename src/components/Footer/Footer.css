@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 .footer {
-  background-color: rgba(30, 29, 70);
+  background-color: var(--nav-navy);
   overflow: hidden;
   width: 100%;
   font-family: 'Poppins', sans-serif;
@@ -34,7 +34,7 @@
 
 .now-playing p {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, .6) !important;
+  color: var(--transparent-white) !important;
   padding: 5px 10px;
   margin-bottom: 6px;
 }
@@ -79,7 +79,7 @@
     appearance: none;
     width: 90%;
     height: 5px;
-    background: #ffffff;
+    background: var(--white);
     outline: none;
     opacity: 0.65;
     -webkit-transition: .2s;
@@ -96,14 +96,14 @@
     width: 15px;
     height: 15px;
     border-radius: 100px;
-    background: #6146b3;
+    background: var(--main-purple);
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
     width: 15px;
     height: 15px;
-    background: #6146b3;
+    background: var(--main-purple);
     border-radius: 100px;
     cursor: pointer;
 }
@@ -119,7 +119,7 @@
 
 .copyright p {
   font-size: 8px;
-  color: rgba(255, 255, 255, .6);
+  color: var(--transparent-white);
   padding: 0px 5px;
   padding-top: 5px;
 }

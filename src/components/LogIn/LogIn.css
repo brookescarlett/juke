@@ -134,7 +134,7 @@ div.center {
 	font-weight: bolder;
 	letter-spacing: 2px;
 	font-size: 1rem;
-	background-color: rgba(30, 29, 70, 1)
+	background-color: var(--nav-navy)
 }
 
 .form-box {

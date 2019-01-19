@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+
+.footer-font { 
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    color: var(--transparent-white) !important;
+}

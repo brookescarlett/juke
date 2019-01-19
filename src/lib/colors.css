@@ -1,0 +1,23 @@
+:root {
+    --main-blue: #5FAACF; 
+    --main-purple: #6146b3;
+    --nav-navy: rgba(30, 29, 70);
+    --white: rgba(255, 255, 255, 1);
+    --transparent-white: rgba(255, 255, 255, .6);
+}
+
+.main-blue {
+    color: var(--main-blue)
+}
+
+.main-purple {
+    color: var(--main-purple)
+}
+
+.nav-navy {
+    color: var(--nav-navy)
+}
+
+.white {
+    color: var(--white)
+}

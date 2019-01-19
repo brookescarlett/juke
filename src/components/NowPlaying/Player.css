@@ -25,6 +25,6 @@
 }
 
 .currently-playing p:nth-child(3)  {
-  color: rgba(255, 255, 255, 1);
+  color: var(--white);
   font-size: 10px;
 }

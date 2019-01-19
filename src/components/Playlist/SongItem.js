@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 
 import ThumbsUp from '../../svgs/ThumbsUp'
 import ThumbsDown from '../../svgs/ThumbsDown'
-import AudioLoader from '../../svgs/AudioLoader'
 import AudioBars from '../../svgs/AudioBars'
 
 class SongItem extends Component {

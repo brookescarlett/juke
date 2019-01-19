@@ -9,7 +9,7 @@
 }
 
 .filter-bar::placeholder {
-  color: rgba(255,255,255, 0.6);
+  color: var(--transparent-white);
   font-size: 15px;
   padding-left: 20px;
   padding-top: 5px;
@@ -37,7 +37,7 @@
     text-align: left;
     padding: 4px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 1)
+    background-color: var(--white)
 }
 
 .modal-content-div:after {

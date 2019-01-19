@@ -1,7 +1,7 @@
 import './Footer.css'
 
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Player from '../NowPlaying/Player'
@@ -83,6 +83,7 @@ class Footer extends Component {
   }
 
   render(){
+    console.log(this.props.DJ)
     return(
 
       <div className="footer">
