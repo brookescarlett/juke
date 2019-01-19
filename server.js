@@ -9,7 +9,7 @@ var client_id = secrets.CLIENT_ID
 var client_secret = secrets.CLIENT_SECRET
 var accountSid = secrets.accountSid
 var authToken = secrets.authToken
-var redirect_uri = 'https://juked-web.herokuapp.com/callback'
+var redirect_uri = 'http://localhost:8888/callback'
 
 /**
  * Generates a random string containing numbers and letters
@@ -99,7 +99,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('https://juked-web.herokuapp.com/#' +
+        res.redirect('http://localhost:3000/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token

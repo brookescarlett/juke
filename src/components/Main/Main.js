@@ -23,24 +23,24 @@ class Main extends Component {
   render() {
     return (
       <div>
-        {this.props.chatroom !== "" ? (
+        { this.props.chatroom !== "" ? (
           <div className="main-container">
             <div id="bg-img"></div>
             <div className='animated fadeIn'>
-            <NavBar store={this.props.store}/>
-            <Filter store={this.props.store}/>
+            <NavBar />
+            <Filter />
             <div className="flex-row">
               <div className="main-content">
-                <Playlist store={this.props.store} />
+                <Playlist  />
               </div>
               <div className="sidebar">
-                <Userlist store={this.props.store} />
-                <Player store={this.props.store} />
-                <NowPlaying store={this.props.store} />
-                <SendText store={this.props.store} />
+                <Userlist  />
+                <Player  />
+                <NowPlaying  />
+                <SendText  />
               </div>
             </div>
-            <Footer store={this.props.store}/>
+            <Footer />
           </div>
           </div>
         ) : null}
@@ -50,7 +50,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => {
-  return {chatroom: state.chatroom}
+  return { chatroom: state.chatroom }
 }
 
 export default connect(mapStateToProps)(Main)

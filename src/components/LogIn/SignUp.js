@@ -1,10 +1,10 @@
 import './LogIn.css'
 
-import React, {Component} from 'react'
-import { SetDJ } from '../../actions/actions.js'
-import { SetChatroom } from '../../actions/actions.js'
+import React, { Component } from 'react'
+import { SetDJ, SetChatroom } from '../../actions/actions.js'
+
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 
 import BigLogo from '../../svgs/BigLogo'
 
@@ -17,7 +17,7 @@ class SignUp extends Component {
         <div className="center">
           <BigLogo />
           <div className="logo">juked.</div>
-          <a href="https://juked-web.herokuapp.com/login"><button className="sign-up-button">LOG IN</button></a>
+          <a href="http://localhost:8888/login"><button className="sign-up-button">LOG IN</button></a>
         </div>
       </div>
       </div>

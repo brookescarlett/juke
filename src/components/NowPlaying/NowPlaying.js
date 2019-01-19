@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
-import { SetCurrentSong } from '../../actions/actions.js'
-import { SetPlayPauseState } from '../../actions/actions.js'
-import { SetVolume } from '../../actions/actions.js'
+import { bindActionCreators } from 'redux'
+import { SetCurrentSong, SetPlayPauseState, SetVolume } from '../../actions/actions.js'
+
 import * as firebase from 'firebase'
 
 class Player extends Component {
@@ -36,13 +35,9 @@ class Player extends Component {
       .then(res => res.json())
       .then(json => {
 
-        // debugger
-          console.log(json);
-
         this.props.SetPlayPauseState(json.is_playing)
-        // console.log(json.device.volume_percent)
-        // this.props.SetVolume(json.device.volume_percent)
-
+     
+      
         const chatroom = this.props.chatroom
         let wasPlaying = ""
         let isPlaying = ""
@@ -80,7 +75,6 @@ class Player extends Component {
 
   getSongsForRecs = () => {
     let seedTracks = this.props.seedTracks.length > 5 ? this.props.seedTracks.slice(-5) : this.props.seedTracks
-    console.log(seedTracks);
     return this.props.seedTracks.length >= 1 ? seedTracks.join() : null
   }
 
@@ -95,8 +89,6 @@ class Player extends Component {
       })
       .then(res => res.json())
       .then(json => {
-        console.log(json);
-        console.log(json.tracks[0])
         this.fetchFunction(json.tracks[0])
       })
     }
@@ -122,8 +114,8 @@ class Player extends Component {
 
   render(){
     return(
-      <div>
-      </div>
+      <Fragment>
+      </Fragment>
     )
   }
 

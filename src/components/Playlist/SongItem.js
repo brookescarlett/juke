@@ -12,44 +12,15 @@ import AudioBars from '../../svgs/AudioBars'
 
 class SongItem extends Component {
 
-  // state = {
-  //   disableUp: false,
-  //   disableDown: false
-  // }
+  handleVote = (upOrDown) => {
+    let id = this.props.datum.id
+   
+    let updates = {}
+    updates[`/${this.props.chatroom}/songs/` + id + `/${upOrDown}`] = ++this.props.datum[upOrDown]
+    var updateVotes = firebase.database().ref().update(updates)
 
-  handleUpVote = (e) => {
-    // if (this.state.disableUp === false) {
-      let id = this.props.datum.id
-      let upVote = ++this.props.datum.upVote
+    this.checkVotes()
 
-      var updates = {}
-      updates[`/${this.props.chatroom}/songs/` + id + '/upVote'] = upVote
-      var updateVotes = firebase.database().ref().update(updates)
-
-      this.checkVotes()
-
-      this.setState({
-        disableUp: true
-      })
-    // }
-
-  }
-
-  handleDownVote = (e) => {
-    // if (this.state.disableDown === false) {
-      let id = this.props.datum.id
-      let downVote = ++this.props.datum.downVote
-
-      var updates = {}
-      updates[`/${this.props.chatroom}/songs/` + id + '/downVote'] = downVote
-      var updateVotes = firebase.database().ref().update(updates)
-
-      this.checkVotes()
-
-      this.setState({
-        disableDown: true
-      })
-    // }
   }
 
   checkVotes = () => {
@@ -63,7 +34,6 @@ class SongItem extends Component {
   }
 
   render(){
-    // debugger
     return(
       <div className="song">
         <div className="main-song-content">
@@ -76,8 +46,8 @@ class SongItem extends Component {
         <div className="bottom-row">
           <div><p>{this.props.datum.artist}</p></div>
           <div className="votes">
-            <p onClick={this.handleUpVote}><ThumbsUp /><span>{this.props.datum.upVote}</span></p>
-            <p onClick={this.props.songs[0].song === this.props.datum.song ? null : this.handleDownVote}><ThumbsDown /><span>{this.props.datum.downVote}</span></p>
+            <p onClick={this.handleVote.bind(this, "upVote")}><ThumbsUp /><span>{this.props.datum.upVote}</span></p>
+            <p onClick={this.props.songs[0].song === this.props.datum.song ? null : this.handleVote.bind(this, "downVote")}><ThumbsDown /><span>{this.props.datum.downVote}</span></p>
           </div>
         </div>
       </div>

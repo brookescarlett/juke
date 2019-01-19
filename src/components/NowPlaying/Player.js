@@ -4,8 +4,6 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import * as firebase from 'firebase'
 
-import AudioLoader from '../../svgs/AudioLoader'
-
 class Player extends Component {
 
   state = {
@@ -41,7 +39,6 @@ class Player extends Component {
           <img src={this.state.currentlyPlaying.datum.album.images[1].url}/>
           <p>{this.state.currentlyPlaying.song}</p>
           <p>{this.state.currentlyPlaying.artist}</p>
-          {/* <AudioLoader /> */}
         </div>
       )
     }

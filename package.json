@@ -5,7 +5,7 @@
   "dependencies": {
     "concurrently": "^3.5.1",
     "cookie-parser": "^1.4.3",
-    "firebase": "^4.13.1",
+    "firebase": "^5.8.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
@@ -15,9 +15,6 @@
     "redux-thunk": "^2.2.0",
     "spotify-web-api-js": "^0.22.1",
     "uuid": "^3.2.1"
-  },
-  "engines": {
-    "node": "8.9.4"
   },
   "main": "index.js",
   "scripts": {

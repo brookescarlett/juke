@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { SetDJ } from '../../actions/actions.js'
-import { SetChatroom } from '../../actions/actions.js'
-import { SetName } from '../../actions/actions.js'
-import { SetPlaylistId } from '../../actions/actions.js'
-import {fetchUser} from '../../actions/actions.js'
+import { SetDJ, SetChatroom, SetName, SetPlaylistId, fetchUser } from '../../actions/actions.js'
+
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 
 import BigLogo from '../../svgs/BigLogo'
 
@@ -25,6 +22,13 @@ class Auth extends Component {
     if (token) {
       spotifyApi.setAccessToken(token)
     }
+
+    this.state = {
+      name: "",
+      chatroom: "",
+      dj: false,
+      disabled: true
+    }
   }
 
   getHashParams = () => {
@@ -39,18 +43,10 @@ class Auth extends Component {
       localStorage.setItem('access_token', hashParams.access_token)
       localStorage.setItem('refresh_token', hashParams.refresh_token)
     } catch (err) {
-      console.log(err)
       this.props.history.push("/signup")
     }
 
     return hashParams
-  }
-
-  state = {
-    name: "",
-    chatroom: "",
-    dj: false,
-    disabled: true
   }
 
   componentDidMount = () => {
@@ -63,38 +59,20 @@ class Auth extends Component {
     })
   }
 
-  handleJoin = (e) => {
+  handleEnter = (e) => {
     e.preventDefault()
-
     let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
 
     newSongRef.set({
       name: this.state.name,
-      dj: false
+      dj: e.target.id === "join" ? false : true
     }, () => {
       this.props.SetName(this.state.name)
       this.props.SetChatroom(this.state.chatroom)
       this.props.SetDJ(false)
       this.props.history.push("/main")
     })
-  }
-
-  handleCreate = (e) => {
-    e.preventDefault()
-
-    let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
-
-    newSongRef.set({
-      name: this.state.name,
-      dj: true
-    }, () => {
-      this.createPlaylist(this.state.chatroom)
-      this.props.SetName(this.state.name)
-      this.props.SetChatroom(this.state.chatroom)
-      this.props.SetDJ(true)
-      this.props.history.push("/main")
-    })
-
+    
   }
 
   createPlaylist = (playlistName) => {
@@ -109,16 +87,16 @@ class Auth extends Component {
       body: JSON.stringify({name: playlistName, public: true})
     })
     .then ( res => res.json())
-    .then ( json => {
-      this.props.SetPlaylistId(json.id)
+    .then ( data => {
+      this.props.SetPlaylistId(data.id)
       // this.openInNewTab(json.id)
     })
   }
 
-  openInNewTab = (playlistid) => {
-    var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
-    win.focus()
-  }
+  // openInNewTab = (playlistid) => {
+  //   var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
+  //   win.focus()
+  // }
 
   render(){
     return(
@@ -137,9 +115,9 @@ class Auth extends Component {
                 </div>
 
                 <div className="auth-buttons">
-                  <button onClick={this.handleJoin} className="auth-button" id="join" disabled={!this.state.name || !this.state.chatroom}>JOIN</button>
+                  <button onClick={this.handleEnter} className="auth-button" id="join" disabled={!this.state.name || !this.state.chatroom}>JOIN</button>
 
-                  <button onClick={this.handleCreate} className="auth-button" id="create" disabled={!this.state.name || !this.state.chatroom}>CREATE</button>
+                  <button onClick={this.handleEnter} className="auth-button" id="create" disabled={!this.state.name || !this.state.chatroom}>CREATE</button>
                 </div>
             </div>
         </div>

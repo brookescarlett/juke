@@ -1,8 +1,8 @@
 import './NavBar.css'
 
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../actions/actions.js'
 
@@ -45,7 +45,10 @@ class NavBar extends Component {
   }
 
   renderGreeting = () => {
-    return this.state.display ? <button onClick={this.logout} className="log-out-button">Log Out</button> : <span>hello,<span className="user-name"> {this.props.name}</span></span>
+    return this.state.display ? <button 
+                                  onClick={this.logout} 
+                                  className="log-out-button"> Log Out </button> 
+                              : <span >hello, <span className="user-name"> {this.props.name}</span> </span>
   }
 
 
@@ -62,7 +65,11 @@ class NavBar extends Component {
         <div className="nav-bar" id="right-side-nav">
           <div className="groupme">
             <p>{this.renderGreeting()}</p>
-            <p className="gear" onClick={this.handleClick}><Gear/></p>
+            <p 
+              className="gear" 
+              onClick={this.handleClick}>
+                <Gear/>
+            </p>
           </div>
         </div>
 

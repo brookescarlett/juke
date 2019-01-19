@@ -2,13 +2,8 @@ import './Playlist.css'
 
 import React, { Component } from 'react'
 
-import { AddSong } from '../../actions/actions.js'
-import { AddSongForRecs } from '../../actions/actions.js'
-import { UpdateSong } from '../../actions/actions.js'
-import { RemoveSong } from '../../actions/actions.js'
-import { AddSongSuggestions } from '../../actions/actions.js'
-import { ToggleSuggestionsModal } from '../../actions/actions.js'
-import { RemoveFromSuggestions } from '../../actions/actions.js'
+import { AddSong, AddSongForRecs, UpdateSong, RemoveSong, AddSongSuggestions, ToggleSuggestionsModal, RemoveFromSuggestions } from '../../actions/actions.js'
+
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -58,8 +53,6 @@ class Playlist extends Component {
         },
         body: JSON.stringify({"uris": [song.URI]})
       })
-      .then(res => res.json())
-      .then(json => {console.log(json)})
     }
   }
 
@@ -74,21 +67,23 @@ class Playlist extends Component {
         },
         body: JSON.stringify({"tracks": [{"uri": song.URI}]})
       })
-      .then(res => res.json())
-      .then(json => {console.log(json)})
     }
   }
 
 
   renderStore = () => {
     return this.props.songs !== [] ? this.props.songs.map(song => {
-      return <SongItem key={song.id} datum={song}/>
+      return < SongItem 
+        key={ song.id } 
+        datum={ song } />
     }) : null
   }
 
   renderSuggestedStore = () => {
     return this.props.suggestedSongs !== [] && this.props.DJ === true ? this.props.suggestedSongs.map(song => {
-      return <SongSuggestion key={ UUID() } suggestion={song}/>
+      return < SongSuggestion 
+                key={ UUID() } 
+                suggestion={ song } />
     }) : null
   }
 
@@ -96,9 +91,6 @@ class Playlist extends Component {
     this.props.ToggleSuggestionsModal(false)
   }
 
-  onOverlayClick = () => {
-    this.props.ToggleSuggestionsModal(false)
-  }
 
   onDialogClick = (event) => {
     event.stopPropagation()
@@ -112,7 +104,7 @@ class Playlist extends Component {
     return(
       <div>
         {this.props.displaySuggestionsModal && this.props.DJ ?
-          <div className="suggestions-overlay-div" onClick={this.onOverlayClick}>
+          <div className="suggestions-overlay-div" onClick={this.onClose}>
             <div className="suggestions-content-div">
               <div className="suggestions-dialog-div">
                 <div className="animated fadeInUp">{this.props.DJ ? this.renderSuggestedStore() : null}</div>
@@ -124,7 +116,7 @@ class Playlist extends Component {
         <div className="playlist">
           <h3>Playlist</h3>
           <div className="song-container">
-            {this.renderStore()}
+            { this.renderStore() }
           </div>
         </div>
       </div>
