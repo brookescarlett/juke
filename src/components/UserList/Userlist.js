@@ -35,14 +35,14 @@ class Userlist extends Component {
 
   renderUsers = () => {
     let uniques = this.state.usersArray.filter(this.onlyUnique)
-    return uniques.map(user => <User key={ UUID() } datum={user}/>)
+    return uniques.map(user => <User key={ UUID() } datum={user} />)
   }
 
   render(){
     return(
       <div className="user-list">
         <h3 className="sub-head">Guests</h3>
-        <p>{this.state.dj !== "" ? `DJ: ${this.state.dj.name}` : "to play music, you'll need a dj!"}</p>
+        <p className="pl3">{this.state.dj !== "" ? `DJ: ${this.state.dj.name}` : "to play music, you'll need a dj!"}</p>
         {this.renderUsers()}
       </div>
     )

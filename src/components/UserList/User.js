@@ -5,7 +5,7 @@ export default class User extends Component {
   render(){
     return(
       <div>
-        <p>@{this.props.datum.name}</p>
+        <p className="pl3">@{this.props.datum.name}</p>
       </div>
     )
   }

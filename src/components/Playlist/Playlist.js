@@ -114,7 +114,7 @@ class Playlist extends Component {
         }
 
         <div className="playlist">
-          <h3>Playlist</h3>
+          <h3 className="sub-head">Playlist</h3>
           <div className="song-container">
             { this.renderStore() }
           </div>

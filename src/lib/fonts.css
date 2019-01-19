@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 
-.footer-font { 
+body {
     font-family: 'Poppins', sans-serif;
+}
+
+.sub-head {
+    margin-left: 1rem;
+}
+
+.footer-font { 
+    /* font-family: 'Poppins', sans-serif; */
     font-size: 0.75rem;
     color: var(--transparent-white) !important;
 }

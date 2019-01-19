@@ -12,6 +12,7 @@ import AudioBars from '../../svgs/AudioBars'
 class SongItem extends Component {
 
   handleVote = (upOrDown) => {
+    console.log('here')
     let id = this.props.datum.id
    
     let updates = {}

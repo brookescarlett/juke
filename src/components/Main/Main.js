@@ -9,7 +9,6 @@ import Playlist from '../Playlist/Playlist'
 import Userlist from '../UserList/Userlist'
 import NowPlaying from '../NowPlaying/NowPlaying'
 import Player from '../NowPlaying/Player'
-import SendText from '../SendText/SendText'
 import Footer from '../Footer/Footer'
 
 class Main extends Component {
@@ -37,7 +36,6 @@ class Main extends Component {
                 <Userlist  />
                 <Player  />
                 <NowPlaying  />
-                <SendText  />
               </div>
             </div>
             <Footer />
