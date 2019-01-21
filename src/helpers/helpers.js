@@ -1,5 +1,11 @@
 import * as firebase from 'firebase'
 
+export let headers = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+}
+
 export let addSongToFirebase = (song, chatroom, name) => {
     let newSongRef = firebase.database().ref(chatroom).child('songs').push()
     newSongRef.set({
@@ -16,4 +22,11 @@ export let addSongToFirebase = (song, chatroom, name) => {
         URI: song.uri,
         datum: song
     })
+}
+
+export let handleErrors = (response) => {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
 }

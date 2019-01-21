@@ -3,6 +3,8 @@ import './Playlist.css'
 import React, { Component } from 'react'
 
 import { AddSong, AddSongForRecs, UpdateSong, RemoveSong, AddSongSuggestions, ToggleSuggestionsModal, RemoveFromSuggestions } from '../../actions/actions.js'
+import { headers, handleErrors } from '../../helpers/helpers';
+
 
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -13,7 +15,6 @@ import UUID from 'uuid'
 
 import SongItem from './SongItem'
 import SongSuggestion from './SongSuggestion'
-import { handleErrors } from '../../actions/errors';
 
 
 class Playlist extends Component {
@@ -46,11 +47,7 @@ class Playlist extends Component {
     if(this.props.playlistID !== "") {
         fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists/${this.props.playlistID}/tracks`, {
           method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-          },
+          headers: headers,
           body: JSON.stringify({"uris": [song.URI]})
       })
       .then( handleErrors )
@@ -62,11 +59,7 @@ class Playlist extends Component {
     if(this.props.playlistID !== "") {
       fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists/${this.props.playlistID}/tracks`, {
         method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        },
+        headers: headers,
         body: JSON.stringify({"tracks": [{"uri": song.URI}]})
       })
       .then( handleErrors )

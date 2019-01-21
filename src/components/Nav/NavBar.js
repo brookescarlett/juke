@@ -1,7 +1,7 @@
 import './NavBar.css'
 
 import { withRouter } from 'react-router'
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../actions/actions.js'

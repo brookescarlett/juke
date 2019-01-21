@@ -3,8 +3,8 @@ import './Playlist.css'
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
 
-import {ToggleSuggestionsModal, RemoveFromSuggestions} from '../../actions/actions.js'
-import {bindActionCreators} from 'redux'
+import { ToggleSuggestionsModal, RemoveFromSuggestions } from '../../actions/actions.js'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import ThumbsUp from '../../svgs/ThumbsUp'

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ToggleModal } from '../../actions/actions.js'
-import { handleErrors } from '../../actions/errors.js'
+import { headers, handleErrors } from '../../helpers/helpers.js'
 
 import DisplayFilterResults from './DisplayFilterResults'
 
@@ -26,11 +26,7 @@ class Filter extends Component {
 
     if (query !== "") {
       fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        }
+        headers: headers
       })
       .then( res => handleErrors(res) )
       .then( res => res.json() )

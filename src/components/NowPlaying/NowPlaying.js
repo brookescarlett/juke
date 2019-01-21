@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SetCurrentSong, SetPlayPauseState, SetVolume } from '../../actions/actions.js'
-import { addSongToFirebase } from '../../helpers/helpers.js'
-import { handleErrors } from '../../actions/errors.js'
+import { headers, addSongToFirebase, handleErrors } from '../../helpers/helpers.js'
 
 import * as firebase from 'firebase'
 
@@ -27,11 +26,7 @@ class Player extends Component {
   getDJsTracks = () => {
     if (this.props.songs.length !== 0 && this.props.DJ && localStorage.getItem('access_token')) {
       fetch('https://api.spotify.com/v1/me/player', {
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        }
+        headers: headers
       })
       .then( res => handleErrors(res) )
       .then( res => res.json() )
@@ -84,11 +79,7 @@ class Player extends Component {
   getDJRecs = () => {
     if (this.props.DJ && this.props.songs.length === 1 && this.state.getSpotifyRecs) {
       fetch(`https://api.spotify.com/v1/recommendations?seed_tracks=${this.getSongsForRecs()}`, {
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        }
+        headers: headers
       })
       .then( res => handleErrors(res) )
       .then( res => res.json() )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { SetDJ, SetChatroom, SetName, SetPlaylistId, fetchUser } from '../../actions/actions.js'
-import { handleErrors } from '../../actions/errors.js'
+import { headers, handleErrors } from '../../helpers/helpers.js'
 
 
 import { connect } from 'react-redux'
@@ -82,11 +82,7 @@ class Auth extends Component {
   createPlaylist = (playlistName) => {
     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
       method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-      },
+      headers: headers,
       body: JSON.stringify({name: playlistName, public: true})
     })
     .then ( res => handleErrors(res) )
