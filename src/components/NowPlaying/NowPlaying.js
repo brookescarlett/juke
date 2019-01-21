@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SetCurrentSong, SetPlayPauseState, SetVolume } from '../../actions/actions.js'
+import { handleErrors } from '../../actions/errors.js'
 
 import * as firebase from 'firebase'
 
@@ -21,6 +22,7 @@ class Player extends Component {
     this.getSongsForRecs()
   }
 
+
   getDJsTracks = () => {
     if (this.props.songs.length !== 0 && this.props.DJ && localStorage.getItem('access_token')) {
       fetch('https://api.spotify.com/v1/me/player', {
@@ -29,11 +31,10 @@ class Player extends Component {
           'Accept': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
-
       })
-
-      .then(res => res.json())
-      .then(json => {
+      .then( res => handleErrors(res) )
+      .then( res => res.json() )
+      .then( json => {
 
         this.props.SetPlayPauseState(json.is_playing)
      
@@ -52,7 +53,7 @@ class Player extends Component {
 
         var ref = firebase.database().ref().child(`${this.props.chatroom}`).child('songs')
         ref.orderByKey().on("child_added", function(snapshot) {
-          if (snapshot.val().song === json.item.name) {
+          if (json.item !== null && snapshot.val().song === json.item.name) {
             isPlaying = snapshot.val()
             updates[`/${chatroom}/songs/` + isPlaying.id + '/currentlyPlaying'] = true
             var updateVotes = firebase.database().ref().update(updates)
@@ -69,6 +70,7 @@ class Player extends Component {
         this.props.SetCurrentSong(isPlaying)
         // this.props.SetVolume(json.device.volume_percent)
       })
+      .catch(err => console.log(err))
     }
   }
 
@@ -87,10 +89,12 @@ class Player extends Component {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       })
-      .then(res => res.json())
-      .then(json => {
+      .then( res => handleErrors(res) )
+      .then( res => res.json() )
+      .then( json => {
         this.fetchFunction(json.tracks[0])
       })
+      .catch(err => console.log(err))
     }
   }
 

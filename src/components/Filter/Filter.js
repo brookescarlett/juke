@@ -1,9 +1,10 @@
 import './Filter.css'
 
 import React, { Component } from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { ToggleModal } from '../../actions/actions.js'
+import { handleErrors } from '../../actions/errors.js'
 
 import DisplayFilterResults from './DisplayFilterResults'
 
@@ -31,8 +32,9 @@ class Filter extends Component {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       })
-      .then(res => res.json())
-      .then(json => {
+      .then( res => handleErrors(res) )
+      .then( res => res.json() )
+      .then( json => {
 
 
         this.props.ToggleModal(true)

@@ -8,9 +8,7 @@ import { bindActionCreators } from 'redux'
 
 import BigLogo from '../../svgs/BigLogo'
 
-class SignUp extends Component {
-
-  render(){
+const SignUp = () => {
     return(
       <div className="animation">
         <div className='animated fadeIn'>
@@ -22,7 +20,6 @@ class SignUp extends Component {
       </div>
       </div>
     )
-  }
 }
 
 const mapStateToProps = state => {

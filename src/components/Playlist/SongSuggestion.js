@@ -14,7 +14,6 @@ import ThumbsDown from '../../svgs/ThumbsDown'
 class SongSuggestion extends Component {
 
   handleClick = (e) => {
-    console.log(e.target.id);
     this.props.ToggleSuggestionsModal(false)
 
     var updates = {}

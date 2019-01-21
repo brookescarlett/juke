@@ -6,14 +6,14 @@
   display: flex;
   flex-direction: column;
   font-size: 12px;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   padding-top: 5%;
   color: rgba(255, 255, 255, 0.75)
 }
 
 .currently-playing img {
-  width: 100%;
+  width: 80%;
 }
 
 .currently-playing p {

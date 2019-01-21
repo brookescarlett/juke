@@ -12,7 +12,6 @@ import AudioBars from '../../svgs/AudioBars'
 class SongItem extends Component {
 
   handleVote = (upOrDown) => {
-    console.log('here')
     let id = this.props.datum.id
    
     let updates = {}
@@ -34,6 +33,7 @@ class SongItem extends Component {
   }
 
   render(){
+    console.log('hi', this.props.songs[0].song === this.props.datum.song, this.props.songs[0].currentlyPlaying)
     return(
       <div className="song">
         <div className="main-song-content">
@@ -41,7 +41,7 @@ class SongItem extends Component {
             <p>@{this.props.datum.user}</p>
             <p>{this.props.datum.song}</p>
           </div>
-          {this.props.songs[0].song === this.props.datum.song && this.props.playPause ? <div className="loader"><AudioBars /></div> : null}
+          {this.props.songs[0].song === this.props.datum.song && this.props.songs[0].currentlyPlaying ? <div className="loader"><AudioBars /></div> : null}
         </div>
         <div className="bottom-row">
           <div><p>{this.props.datum.artist}</p></div>

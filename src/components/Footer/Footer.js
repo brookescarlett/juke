@@ -3,6 +3,7 @@ import './Footer.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { handleErrors } from '../../actions/errors';
 
 import Player from '../NowPlaying/Player'
 
@@ -35,7 +36,8 @@ class Footer extends Component {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       })
-      .then(res => console.log(res))
+      .then( handleErrors ) 
+      .catch( console.log )
     } else {
       fetch('https://api.spotify.com/v1/me/player/play', {
         method: 'PUT',
@@ -45,7 +47,8 @@ class Footer extends Component {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       })
-      .then(res => console.log(res))
+      .then(handleErrors)
+      .catch(console.log)
     }
   }
 
@@ -58,7 +61,8 @@ class Footer extends Component {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
     })
-    .then(res => console.log(res))
+    .then(handleErrors)
+    .catch(console.log)
   }
 
   handleInput = (e) => {
@@ -66,24 +70,22 @@ class Footer extends Component {
       volume: e.target.value
     }, () => {
       let toNum = (parseInt(this.state.volume) * 10)
-      console.log(toNum)
       this.changeVolume(toNum)
     })
   }
 
   changeVolume = (volumePercent) => {
-    console.log(volumePercent);
     fetch(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volumePercent}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       }
     })
-    .then(res => console.log(res))
+    .then(handleErrors)
+    .catch(console.log)
   }
 
   render(){
-    console.log(this.props.DJ)
     return(
 
       <div className="footer">

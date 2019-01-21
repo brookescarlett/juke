@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import * as firebase from 'firebase'
 import { ToggleModal } from '../../actions/actions.js'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 class DisplayFilterResults extends Component {
 
@@ -20,10 +20,10 @@ class DisplayFilterResults extends Component {
     this.props.ToggleModal(false)
 
     let song = this.props.datum
-    this.fetchFunction(song)
+    this.addSongToFirebase(song)
   }
 
-  fetchFunction = (song) => {
+  addSongToFirebase = (song) => {
     let newSongRef = firebase.database().ref(`${this.props.chatroom}`).child('songs').push()
 
     newSongRef.set({

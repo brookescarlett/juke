@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { SetDJ, SetChatroom, SetName, SetPlaylistId, fetchUser } from '../../actions/actions.js'
+import { handleErrors } from '../../actions/errors.js'
+
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -61,11 +63,9 @@ class Auth extends Component {
 
   handleEnter = (e) => {
     e.preventDefault()
-    console.log(e.target.id)
     let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
     let checkDJ = e.target.id === "join" ? false : true
 
-    console.log(checkDJ)
     newSongRef.set({
       name: this.state.name,
       dj: checkDJ
@@ -80,7 +80,6 @@ class Auth extends Component {
   }
 
   createPlaylist = (playlistName) => {
-    console.log('here')
     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
       method: 'POST',
       headers: {
@@ -90,12 +89,12 @@ class Auth extends Component {
       },
       body: JSON.stringify({name: playlistName, public: true})
     })
+    .then ( res => handleErrors(res) )
     .then ( res => res.json())
     .then ( data => {
       this.props.SetPlaylistId(data.id)
-      console.log(data)
-      // this.openInNewTab(json.id)
     })
+    .catch ( err => console.log('this is an error', err) )
   }
 
   // openInNewTab = (playlistid) => {

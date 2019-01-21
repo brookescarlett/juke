@@ -13,6 +13,7 @@ import UUID from 'uuid'
 
 import SongItem from './SongItem'
 import SongSuggestion from './SongSuggestion'
+import { handleErrors } from '../../actions/errors';
 
 
 class Playlist extends Component {
@@ -34,7 +35,6 @@ class Playlist extends Component {
     })
 
     firebase.database().ref().child(`${this.props.chatroom}`).child('requests').orderByKey().on('child_added', snap => {
-      console.log(snap.val());
       this.props.AddSongSuggestions(snap.val())
       snap.val() !== [] ? this.props.ToggleSuggestionsModal(true) : null
     })
@@ -44,15 +44,17 @@ class Playlist extends Component {
 
   addSongToPlaylist = (song) => {
     if(this.props.playlistID !== "") {
-      fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists/${this.props.playlistID}/tracks`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        },
-        body: JSON.stringify({"uris": [song.URI]})
+        fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists/${this.props.playlistID}/tracks`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          },
+          body: JSON.stringify({"uris": [song.URI]})
       })
+      .then( handleErrors )
+      .catch( console.log )
     }
   }
 
@@ -67,6 +69,8 @@ class Playlist extends Component {
         },
         body: JSON.stringify({"tracks": [{"uri": song.URI}]})
       })
+      .then( handleErrors )
+      .catch( console.log )
     }
   }
 
