@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SetCurrentSong, SetPlayPauseState, SetVolume } from '../../actions/actions.js'
+import { addSongToFirebase } from '../../helpers/helpers.js'
 import { handleErrors } from '../../actions/errors.js'
 
 import * as firebase from 'firebase'
@@ -92,28 +93,11 @@ class Player extends Component {
       .then( res => handleErrors(res) )
       .then( res => res.json() )
       .then( json => {
-        this.fetchFunction(json.tracks[0])
+        addSongToFirebase( json.tracks[0], this.props.chatroom, 'juked' )
+        // this.fetchFunction(json.tracks[0])
       })
       .catch(err => console.log(err))
     }
-  }
-
-  fetchFunction = (song) => {
-    let newSongRef = firebase.database().ref(`${this.props.chatroom}`).child('songs').push()
-    newSongRef.set({
-      id: newSongRef.key,
-      song: song.name,
-      artist: song.artists[0].name,
-      album: song.album.name,
-      upVote: 0,
-      downVote: 0,
-      currentlyPlaying: false,
-      beenPlayed: false,
-      spotifyID: song.id,
-      user: 'juked',
-      URI: song.uri,
-      datum: song
-    })
   }
 
   render(){

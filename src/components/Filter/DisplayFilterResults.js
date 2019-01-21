@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import * as firebase from 'firebase'
 import { ToggleModal } from '../../actions/actions.js'
+import { addSongToFirebase } from '../../helpers/helpers.js'
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -20,26 +21,7 @@ class DisplayFilterResults extends Component {
     this.props.ToggleModal(false)
 
     let song = this.props.datum
-    this.addSongToFirebase(song)
-  }
-
-  addSongToFirebase = (song) => {
-    let newSongRef = firebase.database().ref(`${this.props.chatroom}`).child('songs').push()
-
-    newSongRef.set({
-      id: newSongRef.key,
-      song: song.name,
-      artist: song.artists[0].name,
-      album: song.album.name,
-      upVote: 0,
-      downVote: 0,
-      currentlyPlaying: false,
-      beenPlayed: false,
-      spotifyID: song.id,
-      user: this.props.name,
-      URI: song.uri,
-      datum: song
-    })
+    addSongToFirebase(song, this.props.chatroom, this.props.name)
   }
 
   render(){
