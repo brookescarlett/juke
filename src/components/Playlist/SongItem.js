@@ -33,7 +33,6 @@ class SongItem extends Component {
   }
 
   render(){
-    console.log('hi', this.props.songs[0].song === this.props.datum.song, this.props.songs[0].currentlyPlaying)
     return(
       <div className="song">
         <div className="main-song-content">
