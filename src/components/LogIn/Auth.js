@@ -3,13 +3,46 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import { SetDJ, SetChatroom, SetName, SetPlaylistId, fetchUser } from '../../actions/actions.js'
 import { headers, handleErrors } from '../../helpers/helpers.js'
 
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+// import Input from './Input'
 import BigLogo from '../../svgs/BigLogo'
 
 import * as firebase from 'firebase'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+import styled from '@emotion/styled'
+
+
+const Input = styled.input`
+  width: 300px;
+	padding: 2px 20px;
+	border-radius: 100px;
+	border: none;
+	margin-bottom: 20px;
+	background-color: rgba(255, 255, 255, 0.75);
+`
+
+const Button = styled.button`
+  width: 160px;
+	padding: 5px 20px;
+	border-radius: 100px;
+	border: none;
+	color: white;
+	font-weight: bolder;
+	letter-spacing: 2px;
+	font-size: 1rem;
+  background-color: var(--nav-navy);
+  &:disabled {
+    background: 'rgba(30, 29, 70, 0.5)'
+  }
+`
+const authButtonDisabled = css({
+  ':disabled': {
+    background: 'rgba(30, 29, 70, 0.5)'
+  }
+})
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -58,7 +91,7 @@ class Auth extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    }, () => console.log(this.state))
   }
 
   handleEnter = (e) => {
@@ -93,10 +126,6 @@ class Auth extends Component {
     .catch ( err => console.log('this is an error', err) )
   }
 
-  // openInNewTab = (playlistid) => {
-  //   var win = window.open(`https://open.spotify.com/user/${this.props.currentUser.id}/playlist/${playlistid}`, '_blank')
-  //   win.focus()
-  // }
 
   render(){
     return(
@@ -106,19 +135,41 @@ class Auth extends Component {
                 <BigLogo />
               </div>
 
-              <div className="form-box">
+            <div className="form-box">
+              <div className="auth-inputs">
+                  
+                <Input 
+                  type="text" 
+                  name="name" 
+                  placeholder="Enter your name" 
+                  onChange={this.handleChange} />
 
-                <div className="auth-inputs">
-                  <input type="text" name="name" placeholder="Enter your name" onChange={this.handleChange} className="input-field"></input>
+                <Input
+                  type="text"
+                  name="chatroom"
+                  placeholder="Enter or create your room's token"
+                  onChange={this.handleChange} />
+            
+              </div>
 
-                  <input type="text" name="chatroom" placeholder="Enter or create your room's token" onChange={this.handleChange} className="input-field"></input>
-                </div>
+              <div className="auth-buttons">
+                <Button 
+                  onClick={this.handleEnter}  
+                  id="join" 
+                  disabled={!this.state.name || !this.state.chatroom}
+                  css={authButtonDisabled}>
+                  JOIN
+                </Button>
 
-                <div className="auth-buttons">
-                  <button onClick={this.handleEnter} className="auth-button" id="join" disabled={!this.state.name || !this.state.chatroom}>JOIN</button>
-
-                  <button onClick={this.handleEnter} className="auth-button" id="create" disabled={!this.state.name || !this.state.chatroom}>CREATE</button>
-                </div>
+                <Button
+                  onClick={this.handleEnter}
+                  id="join"
+                  disabled={!this.state.name || !this.state.chatroom}
+                  css={authButtonDisabled}>
+                  CREATE
+                </Button>
+               
+              </div>
             </div>
         </div>
       </div>
