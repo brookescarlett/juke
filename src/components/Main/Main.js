@@ -14,9 +14,13 @@ import Footer from '../Footer/Footer'
 class Main extends Component {
 
   componentWillMount = () => {
-    if (this.props.chatroom === "") {
-      this.props.history.push('/signup')
+
+    if (localStorage.getItem('access_token')) {
+      console.log('here')
     }
+    // if (this.props.chatroom === "") {
+    //   this.props.history.push('/signup')
+    // }
   }
 
   render() {

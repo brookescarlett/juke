@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 //possibly not needed
 // import rootReducer from './reducers/rootReducer.js'
@@ -34,6 +34,6 @@ const store = createStore(manageData, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router><App store={store}/></Router>
+    <Router><App /></Router>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

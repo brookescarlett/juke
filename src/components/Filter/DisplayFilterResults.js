@@ -29,7 +29,7 @@ class DisplayFilterResults extends Component {
       <div>
         <div onClick={this.handleClick} id={this.props.datum} className="display-filter-result">
           <div className="display-flex-row">
-            {this.props.datum.album.images[2] ? <img src= {this.props.datum.album.images[2].url}/> : null}
+            {this.props.datum.album.images[2] ? <img src= {this.props.datum.album.images[2].url} alt="album-artwork" /> : null}
             <div className="display-flex-col">
               <p id={this.props.datum}>{this.props.datum.name}</p>
               <p id={this.props.datum}> {this.props.datum.artists[0].name}</p>

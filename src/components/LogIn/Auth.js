@@ -89,30 +89,20 @@ class Auth extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    if (/\d/.test(e.target.value)) {
+      this.setState({ raiseError: true })
+    }
+    else {
+      this.setState({
+        [e.target.name]: e.target.value, 
+        raiseError: false
+      })
+    }
   }
 
-  // doesExist = (e) => {
-  //   e.preventDefault()
-  //   e.persist()
-
-  //   let keys = firebase.database().ref()
-  //   keys.on("child_added", (snapshot) => {
-  //     if (snapshot.key === this.state.chatroom ) {
-  //       console.log('ya')
-  //       return true
-  //     }
-  //   })
-
-  //   setTimeout(() => this.handleEnter(e), 2000)
-
-  // }
 
   handleEnter = (e) => {
-    // e.preventDefault()
-    console.log('here')
+    e.preventDefault()
 
     let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
     let checkDJ = e.target.id === "join" ? false : true
@@ -122,8 +112,6 @@ class Auth extends Component {
       dj: checkDJ
     }, () => {
       checkDJ ? this.createPlaylist(this.state.chatroom) : null
-      // checkDJ ? this.checkExisting(this.state.chatroom) : null
-      // checkDJ && !this.state.raiseError ?  : null
       this.props.SetName(this.state.name)
       this.props.SetChatroom(this.state.chatroom)
       this.props.SetDJ(checkDJ)
@@ -135,7 +123,6 @@ class Auth extends Component {
   }
 
   createPlaylist = (playlistName) => {
-    console.log('hereb')
     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
       method: 'POST',
       headers: headers,
@@ -161,7 +148,7 @@ class Auth extends Component {
 
             <div className="form-box">
               <div className="auth-inputs">
-                {this.state.raiseError === true ? <p className="">Sorry, that name's been taken</p> : null}
+                {this.state.raiseError === true ? <p className="">Sorry, letters only please!</p> : null}
                 <Input 
                   type="text" 
                   name="name" 
@@ -180,7 +167,7 @@ class Auth extends Component {
                 <Button 
                   onClick={this.handleEnter}  
                   id="join" 
-                  disabled={!this.state.name || !this.state.chatroom}
+                  disabled={!this.state.name || !this.state.chatroom || this.state.raiseError}
                   css={authButtonDisabled}>
                   JOIN
                 </Button>
@@ -188,7 +175,7 @@ class Auth extends Component {
                 <Button
                   onClick={this.handleEnter}
                   id="create"
-                  disabled={!this.state.name || !this.state.chatroom}
+                  disabled={!this.state.name || !this.state.chatroom | this.state.raiseError}
                   css={authButtonDisabled}>
                   CREATE
                 </Button>
