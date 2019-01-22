@@ -43,7 +43,7 @@ class Filter extends Component {
         })) : null
 
       })
-      .catch( err => console.log(err) )
+      .catch(console.log)
     } else {
       this.props.ToggleModal(false)
       this.setState({

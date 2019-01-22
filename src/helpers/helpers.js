@@ -26,13 +26,24 @@ export let addSongToFirebase = (song, chatroom, name) => {
 
 export let handleErrors = (response) => {
     if (!response.ok) {
-        throw Error(response.statusText)
-        
-        if (response.status === '401') {
-            this.props.history.push("/signup")
+        throw Error(response.statusText)        
+        // if (response.status === 401) {
+            // console.log('here')
+            // fetch('localhost:8888/refresh_token')
+            // .then( res => res.json() )
+            // .then( console.log)
+            // return window.open("localhost:3000/signup", "_self")
+            // this.props.history.push("/signup")
             // headers.Authorization = `Bearer ${localStorage.getItem('refresh_token')}`
             // console.log(headers)
-        }
+        // }
+
     }
     return response;
+}
+
+
+export let checkKeys = () => {
+    let getRoomList = firebase.database().ref()
+    console.log(getRoomList)
 }

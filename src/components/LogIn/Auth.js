@@ -61,7 +61,8 @@ class Auth extends Component {
       name: "",
       chatroom: "",
       dj: false,
-      disabled: true
+      disabled: true,
+      raiseError: false
     }
   }
 
@@ -93,8 +94,26 @@ class Auth extends Component {
     }, () => console.log(this.state))
   }
 
+  // doesExist = (e) => {
+  //   e.preventDefault()
+  //   e.persist()
+
+  //   let keys = firebase.database().ref()
+  //   keys.on("child_added", (snapshot) => {
+  //     if (snapshot.key === this.state.chatroom ) {
+  //       console.log('ya')
+  //       return true
+  //     }
+  //   })
+
+  //   setTimeout(() => this.handleEnter(e), 2000)
+
+  // }
+
   handleEnter = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
+    console.log('here')
+
     let newSongRef = firebase.database().ref(`${this.state.chatroom}`).child('users').push()
     let checkDJ = e.target.id === "join" ? false : true
 
@@ -103,15 +122,20 @@ class Auth extends Component {
       dj: checkDJ
     }, () => {
       checkDJ ? this.createPlaylist(this.state.chatroom) : null
+      // checkDJ ? this.checkExisting(this.state.chatroom) : null
+      // checkDJ && !this.state.raiseError ?  : null
       this.props.SetName(this.state.name)
       this.props.SetChatroom(this.state.chatroom)
       this.props.SetDJ(checkDJ)
       this.props.history.push("/main")
     })
     
+   
+    
   }
 
   createPlaylist = (playlistName) => {
+    console.log('hereb')
     fetch(`https://api.spotify.com/v1/users/${this.props.currentUser.id}/playlists`, {
       method: 'POST',
       headers: headers,
@@ -123,7 +147,7 @@ class Auth extends Component {
       console.log(data)
       this.props.SetPlaylistId(data.id)
     })
-      .catch(err => this.props.history.push("/signup"))
+    .catch(err => this.props.history.push("/signup"))
   }
 
 
@@ -137,7 +161,7 @@ class Auth extends Component {
 
             <div className="form-box">
               <div className="auth-inputs">
-                  
+                {this.state.raiseError === true ? <p className="">Sorry, that name's been taken</p> : null}
                 <Input 
                   type="text" 
                   name="name" 
