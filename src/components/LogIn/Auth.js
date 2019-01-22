@@ -115,7 +115,16 @@ class Auth extends Component {
       this.props.SetName(this.state.name)
       this.props.SetChatroom(this.state.chatroom)
       this.props.SetDJ(checkDJ)
+
+      // localStorage.setItem('name', this.state.name)
+      // localStorage.setItem('chatroom', this.state.chatroom)
+      // localStorage.setItem('dj', checkDJ)
+
+
       this.props.history.push("/main")
+
+
+
     })
     
    
@@ -133,6 +142,8 @@ class Auth extends Component {
     .then ( data => {
       console.log(data)
       this.props.SetPlaylistId(data.id)
+      // localStorage.setItem('pid', data.id)
+
     })
     .catch(err => this.props.history.push("/signup"))
   }

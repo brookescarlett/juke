@@ -3,6 +3,10 @@ import './Main.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { SetDJ, SetChatroom, SetName, SetPlaylistId, fetchUser } from '../../actions/actions.js'
+import { bindActionCreators } from 'redux'
+
+
 import NavBar from '../Nav/NavBar'
 import Filter from '../Filter/Filter'
 import Playlist from '../Playlist/Playlist'
@@ -15,12 +19,16 @@ class Main extends Component {
 
   componentWillMount = () => {
 
-    if (localStorage.getItem('access_token')) {
-      console.log('here')
-    }
-    // if (this.props.chatroom === "") {
-    //   this.props.history.push('/signup')
+    // if (localStorage.getItem('access_token')) {
+    //   this.props.SetName(localStorage.getItem('name'))
+    //   this.props.SetChatroom(localStorage.getItem('chatroom'))
+    //   this.props.SetDJ(localStorage.getItem('dj'))
+    //   this.props.SetPlaylistId(localStorage.getItem('pid'))
+
     // }
+    if (this.props.chatroom === "") {
+      this.props.history.push('/signup')
+    }
   }
 
   render() {
@@ -55,4 +63,10 @@ const mapStateToProps = state => {
   return { chatroom: state.chatroom }
 }
 
-export default connect(mapStateToProps)(Main)
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    SetDJ, SetChatroom, SetPlaylistId, SetName
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
