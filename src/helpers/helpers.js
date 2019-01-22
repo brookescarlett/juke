@@ -26,7 +26,13 @@ export let addSongToFirebase = (song, chatroom, name) => {
 
 export let handleErrors = (response) => {
     if (!response.ok) {
-        throw Error(response.statusText);
+        throw Error(response.statusText)
+        
+        if (response.status === '401') {
+            this.props.history.push("/signup")
+            // headers.Authorization = `Bearer ${localStorage.getItem('refresh_token')}`
+            // console.log(headers)
+        }
     }
     return response;
 }

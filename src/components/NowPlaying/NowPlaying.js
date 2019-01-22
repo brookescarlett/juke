@@ -13,7 +13,7 @@ class Player extends Component {
   }
 
   componentDidMount = () => {
-    setInterval(this.getDJsTracks, 2000)
+    setInterval(this.getDJsTracks, 5000)
   }
 
   componentWillReceiveProps = () => {
@@ -32,6 +32,7 @@ class Player extends Component {
       .then( res => res.json() )
       .then( json => {
 
+        // console.log(json)
         this.props.SetPlayPauseState(json.is_playing)
      
       

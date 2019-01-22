@@ -63,6 +63,8 @@ class Playlist extends Component {
         body: JSON.stringify({"tracks": [{"uri": song.URI}]})
       })
       .then( handleErrors )
+      .then (res => res.json())
+      .then(console.log)
       .catch( console.log )
     }
   }

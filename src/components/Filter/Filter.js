@@ -31,7 +31,9 @@ class Filter extends Component {
       .then( res => handleErrors(res) )
       .then( res => res.json() )
       .then( json => {
-
+        
+        // console.log(json)
+        // debugger
 
         this.props.ToggleModal(true)
 
@@ -41,6 +43,7 @@ class Filter extends Component {
         })) : null
 
       })
+      .catch( err => console.log(err) )
     } else {
       this.props.ToggleModal(false)
       this.setState({

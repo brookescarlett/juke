@@ -6,7 +6,6 @@ import { headers, handleErrors } from '../../helpers/helpers.js'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-// import Input from './Input'
 import BigLogo from '../../svgs/BigLogo'
 
 import * as firebase from 'firebase'
@@ -121,9 +120,10 @@ class Auth extends Component {
     .then ( res => handleErrors(res) )
     .then ( res => res.json())
     .then ( data => {
+      console.log(data)
       this.props.SetPlaylistId(data.id)
     })
-    .catch ( err => console.log('this is an error', err) )
+      .catch(err => this.props.history.push("/signup"))
   }
 
 
@@ -163,7 +163,7 @@ class Auth extends Component {
 
                 <Button
                   onClick={this.handleEnter}
-                  id="join"
+                  id="create"
                   disabled={!this.state.name || !this.state.chatroom}
                   css={authButtonDisabled}>
                   CREATE
